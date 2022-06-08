@@ -3,6 +3,14 @@ import {
   serializedCreateUserSchema,
 } from "./user/createUser.schema";
 
-import { createItemSchema } from "./item/createItem.schema";
+import {
+  createItemSchema,
+  serializedCreateItemSchema,
+} from "./item/createItem.schema";
 
-export { createUserSchema, serializedCreateUserSchema, createItemSchema };
+export {
+  createUserSchema,
+  serializedCreateUserSchema,
+  createItemSchema,
+  serializedCreateItemSchema,
+};
