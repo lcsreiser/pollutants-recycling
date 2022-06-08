@@ -1,9 +1,10 @@
 import * as yup from "yup"
 
-const createCategorySchema = yup.object().shape({
-    name: yup.string(),
-    unit: yup.string(),
-    description: yup.string(),
+const serializedCategorySchema = yup.object().shape({
+    id: yup.string().uuid().required(),
+    name: yup.string().required(),
+    unit: yup.string().required(),
+    description: yup.string().required(),
 })
 
-export { createCategorySchema }
+export { serializedCategorySchema }
