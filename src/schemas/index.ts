@@ -5,4 +5,14 @@ import {
 
 import { createItemSchema } from "./item/createItem.schema";
 
-export { createUserSchema, serializedCreateUserSchema, createItemSchema };
+import {
+  createCategorySchema,
+} from "./category/createCategory.schema"
+
+export { 
+  createUserSchema, 
+  serializedCreateUserSchema, 
+  createCategorySchema,
+  createItemSchema
+};
+
