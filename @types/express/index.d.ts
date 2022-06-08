@@ -1,10 +1,10 @@
-import { User } from "../../src/entities/user.entity";
+import { User } from "../../src/entities/User";
 
 declare global {
-  namespace Express {
-    interface Request {
-      validated: any;
-      decoded: User;
+    namespace Express {
+      interface Request {
+        validated: User
+        decoded: User
+      }
     }
   }
-}
