@@ -1,18 +1,19 @@
 import { Router } from "express";
 import categoriesController from "../controllers/categories.controller";
 import validateSchemaMiddleware from "../middlewares/validateSchema.middleware";
-import { serializedCategorySchema } from "../schemas";
+import { createCategorySchema, serializedCategoriesSchema } from "../schemas";
 
 const routeCategory = Router()
 
 routeCategory.get(
     "",
-    validateSchemaMiddleware(serializedCategorySchema),
+    validateSchemaMiddleware(serializedCategoriesSchema),
     categoriesController.getAll
     )
 
 routeCategory.post(
     "",
+    validateSchemaMiddleware(createCategorySchema),
     categoriesController.createCategory
 )
 

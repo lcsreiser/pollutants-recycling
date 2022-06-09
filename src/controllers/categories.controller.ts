@@ -12,7 +12,7 @@ class CategoriesController {
     getAll = async (_: Request, res: Response) => {
         const categories = await categoriesService.getAll()
 
-        return res.status(200).json({message: "Okok" })
+        return res.status(200).json({ categories })
     }
 }
 

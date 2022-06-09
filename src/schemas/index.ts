@@ -10,7 +10,8 @@ import {
 
 
 import {
-  serializedCategorySchema,
+  createCategorySchema,
+  serializedCategoriesSchema,
 } from "./category/createCategory.schema";
 
 import {
@@ -32,7 +33,8 @@ export {
   serializedCreateUserSchema,
   createItemSchema,
   serializedCreateItemSchema,
-  serializedCategorySchema,
+  createCategorySchema,
+  serializedCategoriesSchema,
   createStockSchema,
   serializedCreateStockSchema,
   createTransactionSchema,
