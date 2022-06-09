@@ -10,7 +10,6 @@ import {
 
 
 import {
-  createCategorySchema,
   serializedCategorySchema,
 } from "./category/createCategory.schema";
 
