@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { signup } from "../controllers/signup";
+import { signup } from "../controllers";
 import routeDumpSpot from "./dumpSpot.routes";
 
 const registerRouters = (app: Express): void => {
