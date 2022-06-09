@@ -3,7 +3,7 @@ import { AppDataSource } from "../data-source";
 import { DumpSpot } from "../entities/DumpSpot";
 
 interface IDumpSpotRepo {
-    save: (dumpSpot: DumpSpot) => Promise<DumpSpot>;
+    save: (dumpSpot: Partial<DumpSpot>) => Promise<DumpSpot>;
     findBy: (payload: object) => Promise<DumpSpot[]>;
     update: (uuid: string, payload: object) => Promise<UpdateResult>;
 }
@@ -15,7 +15,7 @@ class DumpSpotRepository implements IDumpSpotRepo {
         this.repo = AppDataSource.getRepository(DumpSpot)
     }
 
-    save = async (dumpSpot: DumpSpot) => await this.repo.save(dumpSpot);
+    save = async (dumpSpot: Partial<DumpSpot>) => await this.repo.save(dumpSpot);
 
     findBy = async (payload: object) => await this.repo.findBy({...payload});
 
