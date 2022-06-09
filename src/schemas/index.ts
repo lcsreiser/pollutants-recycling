@@ -8,13 +8,16 @@ import {
   serializedCreateItemSchema,
 } from "./item/createItem.schema";
 
-import { createCategorySchema, serializedCategorySchema } from "./category/createCategory.schema";
+import { serializedCreateDumpSpotSchema, createDumpSpotSchema } from "./dumpSpot/createDumpSpot.schema";
+
+import { serializedCategorySchema } from "./category/createCategory.schema";
 
 export {
   createUserSchema,
+  serializedCreateDumpSpotSchema,
+  createDumpSpotSchema,
   serializedCreateUserSchema,
   createItemSchema,
   serializedCreateItemSchema,
-  createCategorySchema,
   serializedCategorySchema,
 };
