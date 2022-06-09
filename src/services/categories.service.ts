@@ -1,7 +1,7 @@
 import { Request } from "express"
 import { Category } from "../entities/Category"
 import { categoryRepository } from "../repositories"
-import { createCategorySchema, serializedCategoriesSchema } from "../schemas"
+import { createCategorySchema, getCategoriesSchema, serializedCategorySchema } from "../schemas"
 
 class CategoriesService {
 
@@ -14,10 +14,24 @@ class CategoriesService {
         })
     }
 
+    getCategory = async ({ params }: Request) => {
+        
+        const category: Category | null = await categoryRepository.findOne({
+            name: params.name,
+        })
+         
+        // return category
+
+        return await serializedCategorySchema.validate(category, {
+            stripUnknown: true
+        })
+        
+    }
+
     getAll = async () => {
         const categories = await categoryRepository.all()
         
-        return await serializedCategoriesSchema.validate(categories, {
+        return await getCategoriesSchema.validate(categories, {
             stripUnknown: true,
         })
     }

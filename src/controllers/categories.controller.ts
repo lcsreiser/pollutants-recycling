@@ -9,6 +9,12 @@ class CategoriesController {
         return res.status(201).json(category)
     }
 
+    getCategory = async (req: Request, res: Response) => {
+        const chosenCategory = await categoriesService.getCategory(req)
+
+        return res.status(201).json( chosenCategory )
+    }
+
     getAll = async (_: Request, res: Response) => {
         const categories = await categoriesService.getAll()
 
