@@ -17,12 +17,9 @@
   "name": "José",
   "email": "josé@email.com",
   "password": "senhaForte",
-  "zipCode": "11020-004",
-  "street": "AV. Afonso Pena",
+  "zipCode": "11020004",
   "number": 736,
-  "complement": "Apt 121",
-  "latitude": -23.976815351036432,
-  "longitude": -46.297928631145886 
+  "complement": "Apt 121" 
 }
 ```
 
@@ -86,49 +83,50 @@
 ```json
 {
     "users":[
-    {
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "name": "José",
-        "email": "josé@email.com",
-        "address":{
+        {
             "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "zipCode": "11020-004",
-            "street": "AV. Afonso Pena",
-            "number": 736,
-            "complement": "Apt 121",
-            "latitude": -23.976815351036432,
-            "longitude": -46.297928631145886,
-            "isDumpSpot": false
-        }
-    },
-    {
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "name": "Jpão",
-        "email": "joao@email.com",
-        "address":{
+            "name": "José",
+            "email": "josé@email.com",
+            "address":{
+                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+                "zipCode": "11020-004",
+                "street": "AV. Afonso Pena",
+                "number": 736,
+                "complement": "Apt 121",
+                "latitude": -23.976815351036432,
+                "longitude": -46.297928631145886,
+                "isDumpSpot": false
+            }
+        },
+        {
             "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "zipCode": "11020-004",
-            "street": "AV. Afonso Pena",
-            "number": 736,
-            "complement": "Apt 121",
-            "latitude": -23.976815351036432,
-            "longitude": -46.297928631145886,
-            "isDumpSpot": false
-        }
-    },
-    {
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "name": "Maria",
-        "email": "maria@email.com",
-        "address":{
+            "name": "Jpão",
+            "email": "joao@email.com",
+            "address":{
+                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+                "zipCode": "11020-004",
+                "street": "AV. Afonso Pena",
+                "number": 736,
+                "complement": "Apt 121",
+                "latitude": -23.976815351036432,
+                "longitude": -46.297928631145886,
+                "isDumpSpot": false
+            }
+        },
+        {
             "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "zipCode": "11020-004",
-            "street": "AV. Afonso Pena",
-            "number": 736,
-            "complement": "Apt 121",
-            "latitude": -23.976815351036432,
-            "longitude": -46.297928631145886,
-            "isDumpSpot": false
+            "name": "Maria",
+            "email": "maria@email.com",
+            "address":{
+                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+                "zipCode": "11020-004",
+                "street": "AV. Afonso Pena",
+                "number": 736,
+                "complement": "Apt 121",
+                "latitude": -23.976815351036432,
+                "longitude": -46.297928631145886,
+                "isDumpSpot": false
+            }
         }
     ]
 }

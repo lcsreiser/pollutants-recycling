@@ -31,3 +31,5 @@ const serializedCreateDumpSpotSchema = yup.object().shape({
     isDumpSpot: yup.bool().default(false).optional(),
   }),
 });
+
+export {createDumpSpotSchema, serializedCreateDumpSpotSchema}
