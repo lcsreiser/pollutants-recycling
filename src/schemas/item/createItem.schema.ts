@@ -10,4 +10,16 @@ const createItemSchema = yup.object().shape({
   quantity: yup.number().required(),
 });
 
-export { createItemSchema };
+const serializedCreateItemSchema = yup.object().shape({
+  id: yup.string().uuid().required(),
+  name: yup.string().required(),
+  description: yup.string().required(),
+  category: yup.object().shape({
+    name: yup.string().required(),
+  }),
+  owner: yup.object().shape({
+    name: yup.string().required(),
+  }),
+});
+
+export { createItemSchema, serializedCreateItemSchema };

@@ -3,16 +3,18 @@ import {
   serializedCreateUserSchema,
 } from "./user/createUser.schema";
 
-import { createItemSchema } from "./item/createItem.schema";
-
 import {
-  createCategorySchema,
-} from "./category/createCategory.schema"
+  createItemSchema,
+  serializedCreateItemSchema,
+} from "./item/createItem.schema";
 
-export { 
-  createUserSchema, 
-  serializedCreateUserSchema, 
+import { createCategorySchema, serializedCategorySchema } from "./category/createCategory.schema";
+
+export {
+  createUserSchema,
+  serializedCreateUserSchema,
+  createItemSchema,
+  serializedCreateItemSchema,
   createCategorySchema,
-  createItemSchema
+  serializedCategorySchema,
 };
-
