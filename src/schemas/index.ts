@@ -18,6 +18,10 @@ import {
   serializedCreateStockSchema,
 } from "./stock/createStock.schema";
 
+import {
+  createTransactionSchema,
+  serializedCreateTransactionSchema,
+} from "./transactions/createTransaction.schema";
 export {
   createUserSchema,
   serializedCreateUserSchema,
@@ -27,4 +31,6 @@ export {
   serializedCategorySchema,
   createStockSchema,
   serializedCreateStockSchema,
+  createTransactionSchema,
+  serializedCreateTransactionSchema,
 };
