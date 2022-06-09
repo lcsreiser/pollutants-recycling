@@ -8,9 +8,18 @@ import {
   serializedCreateItemSchema,
 } from "./item/createItem.schema";
 
-import { serializedCreateDumpSpotSchema, createDumpSpotSchema } from "./dumpSpot/createDumpSpot.schema";
 
-import { serializedCategorySchema } from "./category/createCategory.schema";
+import {
+  createCategorySchema,
+  serializedCategorySchema,
+} from "./category/createCategory.schema";
+
+import {
+  createStockSchema,
+  serializedCreateStockSchema,
+} from "./stock/createStock.schema";
+
+import { createDumpSpotSchema, serializedCreateDumpSpotSchema } from "./dumpSpot/createDumpSpot.schema";
 
 export {
   createUserSchema,
@@ -20,4 +29,6 @@ export {
   createItemSchema,
   serializedCreateItemSchema,
   serializedCategorySchema,
+  createStockSchema,
+  serializedCreateStockSchema,
 };
