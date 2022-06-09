@@ -8,7 +8,15 @@ import {
   serializedCreateItemSchema,
 } from "./item/createItem.schema";
 
-import { createCategorySchema, serializedCategorySchema } from "./category/createCategory.schema";
+import {
+  createCategorySchema,
+  serializedCategorySchema,
+} from "./category/createCategory.schema";
+
+import {
+  createStockSchema,
+  serializedCreateStockSchema,
+} from "./stock/createStock.schema";
 
 export {
   createUserSchema,
@@ -17,4 +25,6 @@ export {
   serializedCreateItemSchema,
   createCategorySchema,
   serializedCategorySchema,
+  createStockSchema,
+  serializedCreateStockSchema,
 };
