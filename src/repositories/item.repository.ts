@@ -1,4 +1,4 @@
-import { ObjectType, Repository, UpdateResult } from "typeorm";
+import { ObjectType, Repository, UpdateResult, DeleteResult } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Item } from "../entities/Item";
 
@@ -7,6 +7,7 @@ interface IItemRepo {
     update: (uuid: string, payload: object) => Promise<UpdateResult>;
     findBy: (payload: object) => Promise<Item[]>;
     findOneBy: (payload: object) => Promise<Item | null>;
+    delete: (id: string) => Promise<DeleteResult>;
 }
 
 class ItemRepository implements IItemRepo {
@@ -23,6 +24,8 @@ class ItemRepository implements IItemRepo {
     findBy = async (payload: object) => await this.repo.findBy({...payload});
 
     findOneBy = async (payload: object) => await this.repo.findOneBy({...payload});
+
+    delete = async (id: string): Promise<DeleteResult> => await this.repo.delete(id);
 }
 
 export default new ItemRepository();
