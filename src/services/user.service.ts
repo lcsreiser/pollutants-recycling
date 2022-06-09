@@ -3,14 +3,30 @@ import { Request } from "express";
 import { AssertsShape } from "yup/lib/object";
 import { User } from "../entities/User";
 import { userRepository } from "../repositories";
+import { obtainLatitudeLongitude } from "../utils/obtainLatitudeLongitude";
+import { searchZipCode } from "../utils/searchZipCode";
 
 class UserService {
-  create = async ({ validated }: Request): Promise<AssertsShape<any>> => {
+  // Promise<AssertsShape<any>>
+  create = async ({ validated }: Request) => {
     (validated as User).password = await hash((validated as User).password, 10);
 
-    const user: User = await userRepository.save(validated as User);
+    const {
+      address: { zipCode },
+    } = validated;
 
-    return user;
+    let { address, city } = await searchZipCode(Number(zipCode));
+
+    let { latitude, longitude } = await obtainLatitudeLongitude({
+      address,
+      city,
+      number: validated.address.number,
+    });
+    console.log(latitude, longitude);
+
+    // const user: User = await userRepository.save(validated as User);
+
+    return "ok";
   };
 }
 

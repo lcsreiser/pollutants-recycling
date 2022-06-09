@@ -10,3 +10,5 @@ userRoute.post(
   validateSchemaMiddleware(createUserSchema),
   userController.create
 );
+
+export { userRoute };
