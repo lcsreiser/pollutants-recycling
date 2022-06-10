@@ -4,7 +4,7 @@ import { DumpSpot } from "../entities/DumpSpot";
 
 interface IDumpSpotRepo {
     save: (dumpSpot: Partial<DumpSpot>) => Promise<DumpSpot>;
-    findBy: (payload: object) => Promise<DumpSpot[]>;
+    findOne: (payload: object) => Promise<DumpSpot | null>;
     update: (uuid: string, payload: object) => Promise<UpdateResult>;
 }
 
@@ -17,7 +17,7 @@ class DumpSpotRepository implements IDumpSpotRepo {
 
     save = async (dumpSpot: Partial<DumpSpot>) => await this.repo.save(dumpSpot);
 
-    findBy = async (payload: object) => await this.repo.findBy({...payload});
+    findOne = async (payload: object) => await this.repo.findOneBy({...payload});
 
     update = async (uuid: string, payload: object) => await this.repo.update(uuid, {...payload});
 }
