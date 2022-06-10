@@ -1,6 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Item } from "./Item";
-import { Stock } from "./Stock";
 
 
 @Entity("categories")
@@ -16,9 +15,6 @@ export class Category {
 
     @Column()
     description: string;
-
-    @OneToMany(() => Stock, (stock) => stock.category)
-    stocks: Stock[];
     
     @OneToMany(() => Item, (item) => item.category)
     items: Item[];
