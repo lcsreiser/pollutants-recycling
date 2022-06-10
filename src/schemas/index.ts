@@ -11,6 +11,7 @@ import {
 
 import {
   serializedCategorySchema,
+  getCategoriesSchema,
 } from "./category/createCategory.schema";
 
 import {
@@ -32,7 +33,9 @@ export {
   serializedCreateUserSchema,
   createItemSchema,
   serializedCreateItemSchema,
+  createCategorySchema,
   serializedCategorySchema,
+  getCategoriesSchema,
   createStockSchema,
   serializedCreateStockSchema,
   createTransactionSchema,
