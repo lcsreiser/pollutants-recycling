@@ -17,7 +17,7 @@
   "name": "José",
   "email": "josé@email.com",
   "password": "senhaForte",
-  "zipCode": "11020004",
+  "zipCode": "11020325",
   "number": 736,
   "complement": "Apt 121" 
 }
@@ -34,7 +34,7 @@
   "email": "josé@email.com",
   "address":{
     "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "zipCode": "11020-004",
+    "zipCode": "11020325",
     "street": "AV. Afonso Pena",
     "number": 736,
     "complement": "Apt 121",
@@ -89,7 +89,7 @@
             "email": "josé@email.com",
             "address":{
                 "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020-004",
+                "zipCode": "11020325",
                 "street": "AV. Afonso Pena",
                 "number": 736,
                 "complement": "Apt 121",
@@ -104,7 +104,7 @@
             "email": "joao@email.com",
             "address":{
                 "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020-004",
+                "zipCode": "11020325",
                 "street": "AV. Afonso Pena",
                 "number": 736,
                 "complement": "Apt 121",
@@ -119,7 +119,7 @@
             "email": "maria@email.com",
             "address":{
                 "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020-004",
+                "zipCode": "11020325",
                 "street": "AV. Afonso Pena",
                 "number": 736,
                 "complement": "Apt 121",
@@ -151,7 +151,7 @@
     "email": "josé@email.com",
     "address":{
         "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020-004",
+        "zipCode": "11020325",
         "street": "AV. Afonso Pena",
         "number": 736,
         "complement": "Apt 121",
@@ -189,7 +189,7 @@
     "email": "josé@email.com",
     "address":{
         "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020-004",
+        "zipCode": "11020325",
         "street": "AV. Afonso Pena",
         "number": 732,
         "complement": "Apt 42",
@@ -214,7 +214,7 @@
 
 ```json
 {
-    "user removed with successful"
+  "message": "user successfully deleted""
 }
 ```
 
@@ -420,7 +420,7 @@
 
 ```json
 {
-    "item removed with successful"
+    "message": "item successfully deleted""
 }
 ```
 
@@ -437,7 +437,7 @@
 ```json
 {
   "name": "ONG NatureLive",
-  "zipCode": "11020004",
+  "zipCode": "11020325",
   "number": 736,
   "complement": "Apt 121" 
 }
@@ -453,7 +453,7 @@
   "name": "ONG NatureLive",
   "address":{
     "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "zipCode": "11020-004",
+    "zipCode": "11020325",
     "street": "AV. Afonso Pena",
     "number": 736,
     "complement": "Apt 121",
@@ -463,6 +463,54 @@
   }
 }
 ```
+</br></br>
+
+<h3>Busca de todos os pontos de coleta</h3>
+
+`GET /dumpSpot - NO BODY `
+
+**Bearer Token Required**
+
+> Em caso de sucesso, a resposta será:
+
+`GET /dumpSpot - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+  "dumpSpots":[
+    {
+      "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+      "name": "ONG NatureLive",
+      "address":{
+          "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+          "zipCode": "11020325",
+          "street": "AV. Afonso Pena",
+          "number": 736,
+          "complement": "Apt 121",
+          "latitude": -23.976815351036432,
+          "longitude": -46.297928631145886,
+          "isDumpSpot": true
+      }
+    },
+    {
+      "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+      "name": "Prefeitura de Santo André",
+      "address":{
+          "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+          "zipCode": "09210-500",
+          "street": "AV. Estados Unidos",
+          "number": 736,
+          "complement": "Apt 121",
+          "latitude": -23.976815351036432,
+          "longitude": -46.297928631145886,
+          "isDumpSpot": true
+      }
+    }
+  ]
+}
+
+```
+
 </br></br>
 
 <h3>Busca de um ponto de coleta</h3>
@@ -481,7 +529,7 @@
     "name": "ONG NatureLive",
     "address":{
         "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020-004",
+        "zipCode": "11020325",
         "street": "AV. Afonso Pena",
         "number": 736,
         "complement": "Apt 121",
@@ -508,7 +556,7 @@
 
 > Em caso de sucesso, a resposta será:
 
-`PATCH /users/:id - FORMATO DA RESPOSTA - STATUS 200`
+`PATCH /dumpSpot/:dumpSpot_id - FORMATO DA RESPOSTA - STATUS 200`
 
 ```json
 {
@@ -516,7 +564,7 @@
     "name": "ONG NatLive",
     "address":{
         "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020-004",
+        "zipCode": "11020325",
         "street": "AV. Afonso Pena",
         "number": 736,
         "complement": "Apt 121",
@@ -524,6 +572,30 @@
         "longitude": -46.297928631145886,
         "isDumpSpot": true
     }
+}
+```
+
+</br></br>
+
+<h3>Remoção de um ponto de coleta</h3>
+
+`DELETE /dumpSpot/:dumpSpot_id - FORMATO DA REQUISIÇÃO `
+
+**Bearer Token Required**
+
+```json
+{
+  "name": "ONG NatLive"
+}
+```
+
+> Em caso de sucesso, a resposta será:
+
+`DELETE /dumpSpot/:dumpSpot_id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+  "message": "dumpSpot successfully deleted""
 }
 ```
 
