@@ -8,7 +8,6 @@ import {
   serializedCreateItemSchema,
 } from "./item/createItem.schema";
 
-
 import {
   createCategorySchema,
   serializedCategorySchema,
@@ -25,7 +24,15 @@ import {
   serializedCreateTransactionSchema,
 } from "./transactions/createTransaction.schema";
 
-import { createDumpSpotSchema, serializedCreateDumpSpotSchema } from "./dumpSpot/createDumpSpot.schema";
+import {
+  createDumpSpotSchema,
+  serializedCreateDumpSpotSchema,
+} from "./dumpSpot/createDumpSpot.schema";
+
+import {
+  createAdressSchema,
+  serializedAdressSchema,
+} from "./adress/adress.schema";
 
 export {
   createUserSchema,
@@ -41,4 +48,6 @@ export {
   serializedCreateStockSchema,
   createTransactionSchema,
   serializedCreateTransactionSchema,
+  createAdressSchema,
+  serializedAdressSchema,
 };
