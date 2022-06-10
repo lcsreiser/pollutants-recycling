@@ -15,7 +15,7 @@ interface IItemUpdated{
 class ItemService{
     create = async ({validated, decoded}: Request) => {
         const newItem = validated as Item
-        const category = (await categoryRepository.findOne({name: newItem.category})) as Category
+        const category = await categoryRepository.findOne({name: newItem.category})
 
         newItem.category = category
         newItem.owner = decoded as User

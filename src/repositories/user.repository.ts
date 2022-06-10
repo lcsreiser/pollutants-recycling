@@ -5,7 +5,7 @@ import { User } from "../entities/User";
 interface IUserRepo {
   save: (user: Partial<User>) => Promise<User>;
   all: () => Promise<User[]>;
-  findOne: (payload: object) => Promise<User | null>;
+  findOne: (payload: object) => Promise<User>;
 }
 
 class UserRepo implements IUserRepo {
