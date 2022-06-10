@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToOne
 import { User } from "./User";
 
 @Entity("addresses")
-export class Address {
+export class  Address {
 
     @PrimaryGeneratedColumn("uuid")
     addressId?: string;
@@ -11,10 +11,22 @@ export class Address {
     zipCode: string;
 
     @Column()
+    street: string;
+
+    @Column()
     complement: string;
 
     @Column()
+    state: string;
+
+    @Column()
     number: number;
+
+    @Column()
+    latitude: number;
+
+    @Column()
+    longitude: string;
 
     @Column({ default: false })
     isDumpSpot: boolean;

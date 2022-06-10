@@ -1,10 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToOne, JoinColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from "typeorm";
 import { Category } from "./Category";
-import { compare } from "bcrypt";
+import { History } from "./History";
 import { User } from "./User";
-import { DumpSpot } from "./DumpSpot";
-import { TransactionsCollect } from "./TransactionsCollect";
-import { TransactionsDiscard } from "./TransactionDicard";
 
 @Entity("items")
 export class Item {
@@ -25,14 +22,9 @@ export class Item {
     category: Category;
 
     @ManyToOne(() => User, (user) => user.items)
-    owner?: User;
+    owner: User;
 
-    @ManyToOne(() => DumpSpot, (dumpSpot) => dumpSpot.items)
-    dumpSpot?: DumpSpot;
+    @OneToOne(() => History , (history) => history.item)
+    histories: History[];
 
-    @OneToMany(() => TransactionsCollect, (transactionsCollect) => transactionsCollect.item)
-    collects: TransactionsCollect[];
-
-    @OneToMany(() => TransactionsDiscard, (transactionsDiscard) => transactionsDiscard.item)
-    discards: TransactionsDiscard[];
 }

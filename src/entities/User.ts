@@ -1,9 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import { Address } from "./Address";
 import { compare } from "bcrypt";
-import { TransactionsDiscard } from "./TransactionDicard";
-import { TransactionsCollect } from "./TransactionsCollect";
 import { Item } from "./Item";
+import { History } from "./History";
 
 @Entity("users")
 export class User {
@@ -27,11 +26,8 @@ export class User {
     @OneToMany(() => Item, (item) => item.owner)
     items: Item[];
 
-    @OneToMany(() => TransactionsDiscard, (transactionsDiscard) => transactionsDiscard.provider)
-    discards: TransactionsDiscard[];
-    
-    @OneToMany(() => TransactionsCollect, (transactionsCollect) => transactionsCollect.collector )
-    collects: TransactionsCollect[];
+    @OneToMany(() => History, (history) => history.provider)
+    histories: History[];
 
     comparePwd = async (pwdString: string): Promise<boolean> => {
         return await compare(pwdString, this.password);
