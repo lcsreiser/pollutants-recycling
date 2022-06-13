@@ -16,6 +16,11 @@ routeCategory.get(
     categoriesController.getCategory
 )
 
+routeCategory.delete(
+    "/:categoryId",
+    categoriesController.deleteCategory
+)
+
 routeCategory.post(
     "",
     validateSchemaMiddleware(createCategorySchema),

@@ -19,13 +19,10 @@ class CategoriesService {
         const category: Category | null = await categoryRepository.findOne({
             name: params.name,
         })
-         
-        // return category
 
         return await serializedCategorySchema.validate(category, {
             stripUnknown: true
-        })
-        
+        })   
     }
 
     getAll = async () => {
@@ -34,6 +31,19 @@ class CategoriesService {
         return await getCategoriesSchema.validate(categories, {
             stripUnknown: true,
         })
+    }
+
+    deleteCategory = async ({ params }: Request) => {
+        
+        const category: Category | null = await categoryRepository.findOne({
+            id: params.id,
+        })
+
+        if (category === null) return null
+
+        await categoryRepository.delete(category.categoryId)
+
+        return true 
     }
 }
 

@@ -12,13 +12,24 @@ class CategoriesController {
     getCategory = async (req: Request, res: Response) => {
         const chosenCategory = await categoriesService.getCategory(req)
 
-        return res.status(201).json( chosenCategory )
+        chosenCategory === null ?
+        res.status(404).json({"error": "Category not found"}) : 
+        res.status(201).json( chosenCategory )
     }
 
     getAll = async (_: Request, res: Response) => {
         const categories = await categoriesService.getAll()
 
         return res.status(200).json({ categories })
+    }
+
+    deleteCategory = async (req: Request, res: Response) => {
+        const categoryToDelete = await categoriesService.deleteCategory(req)
+        console.log(categoryToDelete)
+
+        categoryToDelete === null ?
+        res.status(404).json({"error": "Category not found"}) :
+        res.status(200).json("Succefully deleted")
     }
 }
 
