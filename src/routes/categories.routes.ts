@@ -13,7 +13,6 @@ routeCategory.get(
 
 routeCategory.get(
     "/:name",
-    validateSchemaMiddleware(serializedCategorySchema),
     categoriesController.getCategory
 )
 
