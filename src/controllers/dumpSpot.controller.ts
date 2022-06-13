@@ -19,6 +19,19 @@ class DumpSpotController {
         
         return res.status(200).json(updatedDumpSpot);
     }
+
+    retieveAll = async(req: Request, res:Response) => {
+        const dumpSpots = await dumpSpotService.retieveAll()
+
+        return res.status(200).json(dumpSpots)
+    }
+
+    delete = async(req: Request, res: Response) => {
+        const id = req.params['id']
+        await dumpSpotService.delete(id)
+
+        return res.status(200).json({message: "dumpSpot successfully deleted"})
+    }
 }
 
 export default new DumpSpotController();
