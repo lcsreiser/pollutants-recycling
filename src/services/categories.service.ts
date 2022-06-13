@@ -33,6 +33,19 @@ class CategoriesService {
         })
     }
 
+    updateCategory = async ({ params, body }: Request) => {
+        
+        await categoryRepository.update(params.categoryId, {...body})
+        
+        const category: Category | null = await categoryRepository.findOne({
+            id: params.id,
+        })
+        
+        return await createCategorySchema.validate(category, {
+            stripUnknown: true,
+        })
+    }
+
     deleteCategory = async ({ params }: Request) => {
         
         const category: Category | null = await categoryRepository.findOne({

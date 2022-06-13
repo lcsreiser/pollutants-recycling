@@ -23,9 +23,16 @@ class CategoriesController {
         return res.status(200).json({ categories })
     }
 
+    updateCategory = async (req: Request, res: Response) => {
+        const categoryToUpdate = await categoriesService.updateCategory(req)
+
+        categoryToUpdate === null ? 
+        res.status(404).json({"error": "Category not found"}) :
+        res.status(200).json(categoryToUpdate)
+    }
+
     deleteCategory = async (req: Request, res: Response) => {
         const categoryToDelete = await categoriesService.deleteCategory(req)
-        console.log(categoryToDelete)
 
         categoryToDelete === null ?
         res.status(404).json({"error": "Category not found"}) :
