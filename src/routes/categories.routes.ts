@@ -13,8 +13,18 @@ routeCategory.get(
 
 routeCategory.get(
     "/:name",
-    validateSchemaMiddleware(serializedCategorySchema),
     categoriesController.getCategory
+)
+
+routeCategory.delete(
+    "/:categoryId",
+    categoriesController.deleteCategory
+)
+
+routeCategory.patch(
+    "/:categoryId",
+    validateSchemaMiddleware(createCategorySchema),
+    categoriesController.updateCategory
 )
 
 routeCategory.post(
