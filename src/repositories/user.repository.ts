@@ -16,6 +16,7 @@ class UserRepo implements IUserRepo {
   }
 
   save = async (user: Partial<User>) => await this.ormRepo.save(user);
+
   all = async () => await this.ormRepo.find();
 
   findOne = async (payload: object) => {
