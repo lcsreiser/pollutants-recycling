@@ -15,11 +15,6 @@ import {
 } from "./category/createCategory.schema";
 
 import {
-  createStockSchema,
-  serializedCreateStockSchema,
-} from "./stock/createStock.schema";
-
-import {
   createTransactionSchema,
   serializedCreateTransactionSchema,
 } from "./transactions/createTransaction.schema";
@@ -44,8 +39,6 @@ export {
   createCategorySchema,
   serializedCategorySchema,
   getCategoriesSchema,
-  createStockSchema,
-  serializedCreateStockSchema,
   createTransactionSchema,
   serializedCreateTransactionSchema,
   createAdressSchema,
