@@ -1,4 +1,5 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { DumpSpot } from "./DumpSpot";
 import { Item } from "./Item";
 
 
@@ -18,5 +19,8 @@ export class Category {
     
     @OneToMany(() => Item, (item) => item.category)
     items: Item[];
+
+    @ManyToMany(()=> DumpSpot, (dumpSpot)=> dumpSpot.categories)
+    dumpspots: DumpSpot[];
 
 }

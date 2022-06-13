@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Address } from "./Address";
+import { Category } from "./Category";
 import { History } from "./History";
 
 
@@ -17,4 +18,7 @@ export class  DumpSpot {
     @OneToOne(() => Address, (address)=> address)
     @JoinColumn()
     address: Address;
+
+    @ManyToMany(() => Category, (category) => category.dumpspots)
+    categories: Category[];
 }
