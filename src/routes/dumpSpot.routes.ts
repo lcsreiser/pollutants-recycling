@@ -10,6 +10,8 @@ const route = Router();
 route.post("",validateToken, validateSchemaMiddleware(createDumpSpotSchema), dumpSpotController.createController);
 route.get("/:dumpSpot_id", validateToken, verifyDumpSpotExists, dumpSpotController.getDumpSpotsById );
 route.patch("/:dumpSpot_id", validateToken, verifyDumpSpotExists, dumpSpotController.updateDumpSpot);
+route.get("", validateToken, dumpSpotController.retieveAll);
+route.delete("/:dumpSpot_id", validateToken, verifyDumpSpotExists, dumpSpotController.delete);
 
 export default route;
 

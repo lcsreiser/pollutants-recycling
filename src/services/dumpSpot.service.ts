@@ -28,6 +28,19 @@ class DumpSpotService {
             stripUnknown: true
         });
     }
+
+    retieveAll = async() => {
+        const dumpSpots = await dumpSpotRepository.all()
+
+        return dumpSpots
+    }
+
+    delete = async(id: string) => {
+        const dumpSpot  =await dumpSpotRepository.findOne({id: id})
+        await dumpSpotRepository.delete(dumpSpot.dumpSpot_id)
+
+        return true
+    }
 }
 
 export default new DumpSpotService();
