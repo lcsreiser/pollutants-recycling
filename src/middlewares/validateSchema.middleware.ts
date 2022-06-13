@@ -15,7 +15,7 @@ const validateSchemaMiddleware =
 
       return next();
     } catch (error) {
-      throw new ErrorHandler(400, { error: error });
+      throw new ErrorHandler(400, { error: error.errors });
     }
   };
 

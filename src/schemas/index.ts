@@ -19,8 +19,16 @@ import {
   createTransactionSchema,
   serializedCreateTransactionSchema,
 } from "./transactions/createTransaction.schema";
+
+import {
+  createDumpSpotSchema,
+  serializedCreateDumpSpotSchema,
+} from "./dumpSpot/createDumpSpot.schema";
+
 export {
   createUserSchema,
+  serializedCreateDumpSpotSchema,
+  createDumpSpotSchema,
   serializedCreateUserSchema,
   createItemSchema,
   serializedCreateItemSchema,
