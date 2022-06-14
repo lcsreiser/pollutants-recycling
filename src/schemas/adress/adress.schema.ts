@@ -15,6 +15,7 @@ const createAdressSchema = yup.object().shape({
   street: yup.string().default("joao nada").optional(),
   complement: yup.string().default("casa").optional(),
   state: yup.string().default("sc").optional(),
+  city: yup.string().required(),
   number: yup.number().default(2).optional(),
   latitute: yup.number().default(4968).optional(),
   longitude: yup.number().default(6849).optional(),

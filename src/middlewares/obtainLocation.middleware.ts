@@ -36,7 +36,7 @@ const obtaintLocationMiddleware = async (
         street: response.data.results[0].address_components[1].long_name,
         number: (req.validated as User).address.number,
         complement: (req.validated as User).address.complement,
-        // city: response.data.results[0].address_components[3].long_name,
+        city: response.data.results[0].address_components[3].long_name,
         state: response.data.results[0].address_components[4].short_name,
         // full_address: response.data.results[0].formatted_address,
         latitude: response.data.results[0].geometry.location.lat,

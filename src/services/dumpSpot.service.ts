@@ -1,13 +1,17 @@
 import { Request } from "express";
-import { DumpSpot } from "../entities";
-import { dumpSpotRepository } from "../repositories";
+import { Address, DumpSpot } from "../entities";
+import { addressRepository, dumpSpotRepository } from "../repositories";
 import { serializedCreateDumpSpotSchema } from "../schemas";
 
 class DumpSpotService {
-  create = async ({ validated }: Request) => {
+  create = async ({ validated, location }: Request) => {
     const newDumpSpot = await dumpSpotRepository.save(
       validated as Partial<DumpSpot>
     );
+    const address: Address = await addressRepository.save({
+      ...(location as Address),
+    });
+
 
     return await serializedCreateDumpSpotSchema.validate(newDumpSpot, {
       stripUnknown: true,
@@ -18,28 +22,17 @@ class DumpSpotService {
     const dumpSpot = await dumpSpotRepository.findOne({
       dumpSpot_id: params.dumpSpot_id,
     });
+  }
 
-    update = async ({params, body}: Request) => {
-        await dumpSpotRepository.update(params.dumpSpot_id, {...body});
-         
-        const updatedDumpSpot: DumpSpot | null = await dumpSpotRepository.findOne({dumpSpot_id: params.dumpSpot_id})
-        return await serializedCreateDumpSpotSchema.validate(updatedDumpSpot, {
-            stripUnknown: true
-        });
-    }
+  update = async ({ params, body }: Request) => {
+    await dumpSpotRepository.update(params.dumpSpot_id, { ...body });
 
-    retieveAll = async() => {
-        const dumpSpots = await dumpSpotRepository.all()
+    const updatedDumpSpot: DumpSpot | null = await dumpSpotRepository.findOne({ dumpSpot_id: params.dumpSpot_id })
+    return await serializedCreateDumpSpotSchema.validate(updatedDumpSpot, {
+      stripUnknown: true
+    });
+  }
 
-        return dumpSpots
-    }
-
-    delete = async(id: string) => {
-        const dumpSpot  =await dumpSpotRepository.findOne({id: id})
-        await dumpSpotRepository.delete(dumpSpot.dumpSpot_id)
-
-        return true
-    }
 }
 
 export default new DumpSpotService();
