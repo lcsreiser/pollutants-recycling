@@ -27,6 +27,9 @@ export class Address {
   state: string;
 
   @Column()
+  city: string;
+
+  @Column()
   number: number;
 
   @Column({type: "float"})
