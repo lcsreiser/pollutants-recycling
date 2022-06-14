@@ -24,6 +24,7 @@ const serializedCreateDumpSpotSchema = yup.object().shape({
   address: yup.object().shape({
     zipCode: yup.string().required(),
     street: yup.string().required(),
+    city: yup.string().required(),
     complement: yup.string().optional(),
     number: yup.number().required(),
     latitude: yup.number().required(),
