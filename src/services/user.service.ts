@@ -1,9 +1,10 @@
 import { Request } from "express";
+import { AssertsShape } from "yup/lib/object";
+import { addressRepository, userRepository } from "../repositories";
+
 import { sign } from "jsonwebtoken";
 import { Address, User } from "../entities";
-import { userRepository } from "../repositories";
 import * as dotenv from "dotenv";
-import { AssertsShape } from "yup/lib/object";
 import { hash } from "bcrypt";
 import { serializedCreateUserSchema } from "../schemas/user/createUser.schema";
 
@@ -18,8 +19,13 @@ class UserService {
   createUser = async ({
     validated,
     decoded,
+    location,
   }: Request): Promise<AssertsShape<any>> => {
     (validated as User).password = await hash((validated as User).password, 10);
+
+    const address: Address = await addressRepository.save({
+      ...(location as Address),
+    });
 
     const user: User = await userRepository.save(validated as User);
 

@@ -8,11 +8,15 @@ import {
   serializedCreateItemSchema,
 } from "./item/createItem.schema";
 
+<<<<<<< HEAD
+import { serializedCategorySchema } from "./category/createCategory.schema";
+=======
 import {
   createCategorySchema,
   serializedCategorySchema,
   getCategoriesSchema,
 } from "./category/createCategory.schema";
+>>>>>>> develop
 
 import {
   createTransactionSchema,
@@ -23,11 +27,14 @@ import {
   createDumpSpotSchema,
   serializedCreateDumpSpotSchema,
 } from "./dumpSpot/createDumpSpot.schema";
+<<<<<<< HEAD
+=======
 
 import {
   createAdressSchema,
   serializedAdressSchema,
 } from "./adress/adress.schema";
+>>>>>>> develop
 
 export {
   createUserSchema,
