@@ -9,11 +9,11 @@ const verifyCategoryExists = async (
   res: Response,
   next: NextFunction
 ) => {
-  const foundUser: Category | null = await categoryRepository.findOne({
+  const foundCategory: Category | null = await categoryRepository.findOne({
     name: (req.validated as Category).name,
   });
 
-  if (foundUser) {
+  if (foundCategory) {
     throw new ErrorHandler(409, `${(req.validated as Category).name} already exists`)
   }
 

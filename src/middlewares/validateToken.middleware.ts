@@ -14,11 +14,6 @@ const validateToken = async (
 ) => {
   const token: string = req.headers.authorization?.split(" ")[1];
 
-//deu um conflito entre essa função e a de cima, não sabia qual era pra ficar, então comentei essa :D
-//const validateToken = async (req: Request, res: Response, next: NextFunction) => {
-//const token = (req.headers.authorization?.split(" ")[1]) as string;
-
-
   if (!token) {
     res.status(400).json({ message: "Missing authorization token." });
   }

@@ -11,9 +11,8 @@ const route = Router();
 route.post("",validateToken, validateSchemaMiddleware(createDumpSpotSchema), obtaintLocationMiddleware, dumpSpotController.createController);
 route.get("/:dumpSpot_id", validateToken, verifyDumpSpotExists, dumpSpotController.getDumpSpotsById );
 route.patch("/:dumpSpot_id", validateToken, verifyDumpSpotExists, dumpSpotController.updateDumpSpot);
-route.get("/:latitude&:longitude" );
+route.get("/?:latitude&:longitude", );
 
 export default route;
 
-//to do
-//middleware de verificacao de usuario para atualizar locais de coleta
+
