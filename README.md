@@ -17,9 +17,11 @@
   "name": "José",
   "email": "josé@email.com",
   "password": "senhaForte",
-  "zipCode": "11020325",
-  "number": 736,
-  "complement": "Apt 121" 
+  "address": {
+    "zipCode": "11020325",
+    "number": 736,
+    "complement": "Apt 121" 
+  }
 }
 ```
 
@@ -29,17 +31,17 @@
 
 ```json
 {
-  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
   "name": "José",
   "email": "josé@email.com",
   "address":{
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
     "zipCode": "11020325",
     "street": "AV. Afonso Pena",
     "number": 736,
     "complement": "Apt 121",
-    "latitude": -23.976815351036432,
-    "longitude": -46.297928631145886,
+    "city": "Santos",
+    "state": "SP",
     "isDumpSpot": false
   }
 }
@@ -84,49 +86,34 @@
 {
     "users":[
         {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "José",
-            "email": "josé@email.com",
-            "address":{
-                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020325",
-                "street": "AV. Afonso Pena",
-                "number": 736,
-                "complement": "Apt 121",
-                "latitude": -23.976815351036432,
-                "longitude": -46.297928631145886,
-                "isDumpSpot": false
-            }
+          "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+          "name": "José",
+          "email": "josé@email.com",
+          "address":{
+            "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+            "zipCode": "11020325",
+            "street": "AV. Afonso Pena",
+            "number": 736,
+            "complement": "Apt 121",
+            "city": "Santos",
+            "state": "SP",
+            "isDumpSpot": false
+          }
         },
         {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "Jpão",
-            "email": "joao@email.com",
-            "address":{
-                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020325",
-                "street": "AV. Afonso Pena",
-                "number": 736,
-                "complement": "Apt 121",
-                "latitude": -23.976815351036432,
-                "longitude": -46.297928631145886,
-                "isDumpSpot": false
-            }
-        },
-        {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "Maria",
-            "email": "maria@email.com",
-            "address":{
-                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020325",
-                "street": "AV. Afonso Pena",
-                "number": 736,
-                "complement": "Apt 121",
-                "latitude": -23.976815351036432,
-                "longitude": -46.297928631145886,
-                "isDumpSpot": false
-            }
+          "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+          "name": "Gustavo",
+          "email": "gustavo3@email.com",
+          "address":{
+            "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+            "zipCode": "91350160",
+            "street": "Rua Guilherme Klippel",,
+            "number": 305,
+            "complement": "casas",
+            "city": "Porto Alegre",
+            "state": "RS",
+            "isDumpSpot": false
+          }
         }
     ]
 }
@@ -146,19 +133,19 @@
 
 ```json
 {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "José",
-    "email": "josé@email.com",
-    "address":{
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020325",
-        "street": "AV. Afonso Pena",
-        "number": 736,
-        "complement": "Apt 121",
-        "latitude": -23.976815351036432,
-        "longitude": -46.297928631145886,
-        "isDumpSpot": false
-    }
+  "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "name": "José",
+  "email": "josé@email.com",
+  "address":{
+    "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "zipCode": "11020325",
+    "street": "AV. Afonso Pena",
+    "number": 736,
+    "complement": "Apt 121",
+    "city": "Santos",
+    "state": "SP",
+    "isDumpSpot": false
+  }
 }
 ```
 
@@ -184,19 +171,19 @@
 
 ```json
 {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "José Carlos",
-    "email": "josé@email.com",
-    "address":{
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020325",
-        "street": "AV. Afonso Pena",
-        "number": 732,
-        "complement": "Apt 42",
-        "latitude": -23.9768153510363425,
-        "longitude": -46.2979286311894325,
-        "isDumpSpot": false
-    }
+  "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "name": "José Carlos",
+  "email": "josé@email.com",
+  "address":{
+    "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "zipCode": "11020325",
+    "street": "AV. Afonso Pena",
+    "number": 732,
+    "complement": "Apt 42",
+    "city": "Santos",
+    "state": "SP",
+    "isDumpSpot": false
+  }
 }
 ```
 
@@ -332,7 +319,7 @@
 
 ```json
 {
-  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "itemId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
   "name": "Garrafa de óleo",
   "description": "Garrafa de óleo usado",
   "quantity": "3 Litros",
@@ -359,7 +346,7 @@
 
 ```json
 {
-  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "itemId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
   "name": "Garrafa de óleo",
   "description": "Garrafa de óleo usado",
   "quantity": "3 Litros",
@@ -393,7 +380,7 @@
 
 ```json
 {
-  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "itemId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
   "name": "Galão de óleo",
   "description": "Galão de óleo usado",
   "quantity": "3 Litros",
@@ -437,9 +424,12 @@
 ```json
 {
   "name": "ONG NatureLive",
-  "zipCode": "11020325",
-  "number": 736,
-  "complement": "Apt 121" 
+  "zipCode": "11020004",
+	"address": {
+		"number": 726,
+  	"complement": "Apt 31",
+    "isDumpSpot": true
+	} 
 }
 ```
 
@@ -449,68 +439,20 @@
 
 ```json
 {
-  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "dumpSpot_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
   "name": "ONG NatureLive",
   "address":{
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "zipCode": "11020325",
+    "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "zipCode": "11020004",
     "street": "AV. Afonso Pena",
     "number": 736,
-    "complement": "Apt 121",
+    "complement": "Apt 31",
     "latitude": -23.976815351036432,
     "longitude": -46.297928631145886,
     "isDumpSpot": true
   }
 }
 ```
-</br></br>
-
-<h3>Busca de todos os pontos de coleta</h3>
-
-`GET /dumpSpot - NO BODY `
-
-**Bearer Token Required**
-
-> Em caso de sucesso, a resposta será:
-
-`GET /dumpSpot - FORMATO DA RESPOSTA - STATUS 200`
-
-```json
-{
-  "dumpSpots":[
-    {
-      "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-      "name": "ONG NatureLive",
-      "address":{
-          "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-          "zipCode": "11020325",
-          "street": "AV. Afonso Pena",
-          "number": 736,
-          "complement": "Apt 121",
-          "latitude": -23.976815351036432,
-          "longitude": -46.297928631145886,
-          "isDumpSpot": true
-      }
-    },
-    {
-      "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-      "name": "Prefeitura de Santo André",
-      "address":{
-          "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-          "zipCode": "09210-500",
-          "street": "AV. Estados Unidos",
-          "number": 736,
-          "complement": "Apt 121",
-          "latitude": -23.976815351036432,
-          "longitude": -46.297928631145886,
-          "isDumpSpot": true
-      }
-    }
-  ]
-}
-
-```
-
 </br></br>
 
 <h3>Busca de um ponto de coleta</h3>
@@ -525,10 +467,10 @@
 
 ```json
 {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "dumpSpot_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
     "name": "ONG NatureLive",
     "address":{
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+        "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
         "zipCode": "11020325",
         "street": "AV. Afonso Pena",
         "number": 736,
@@ -560,10 +502,10 @@
 
 ```json
 {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "dumpSpot_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
     "name": "ONG NatLive",
     "address":{
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+        "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
         "zipCode": "11020325",
         "street": "AV. Afonso Pena",
         "number": 736,
@@ -572,30 +514,6 @@
         "longitude": -46.297928631145886,
         "isDumpSpot": true
     }
-}
-```
-
-</br></br>
-
-<h3>Remoção de um ponto de coleta</h3>
-
-`DELETE /dumpSpot/:dumpSpot_id - FORMATO DA REQUISIÇÃO `
-
-**Bearer Token Required**
-
-```json
-{
-  "name": "ONG NatLive"
-}
-```
-
-> Em caso de sucesso, a resposta será:
-
-`DELETE /dumpSpot/:dumpSpot_id - FORMATO DA RESPOSTA - STATUS 200`
-
-```json
-{
-  "message": "dumpSpot successfully deleted""
 }
 ```
 
