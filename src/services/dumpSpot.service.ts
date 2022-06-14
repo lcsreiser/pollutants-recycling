@@ -1,12 +1,16 @@
 import { Request } from "express";
-import { DumpSpot } from "../entities";
-import { dumpSpotRepository } from "../repositories";
+import { Address, DumpSpot } from "../entities";
+import { addressRepository, dumpSpotRepository } from "../repositories";
 import { serializedCreateDumpSpotSchema } from "../schemas";
 
 class DumpSpotService {
-  create = async ({ validated }: Request) => {
-    const newDumpSpot = await dumpSpotRepository.save(
-      validated as Partial<DumpSpot>
+  create = async ({ validated, location }: Request) => {
+    const address: Address = await addressRepository.save({
+      ...(location as Address),
+    });
+
+    const newDumpSpot: DumpSpot = await dumpSpotRepository.save({...(validated as Partial<DumpSpot>), address}
+      
     );
     return await serializedCreateDumpSpotSchema.validate(newDumpSpot, {
       stripUnknown: true,
@@ -14,9 +18,10 @@ class DumpSpotService {
   };
 
   retrieve = async ({ params }: Request) => {
-    const dumpSpot = await dumpSpotRepository.findOne({
+    const dumpSpot: DumpSpot = await dumpSpotRepository.findOne({
       dumpSpot_id: params.dumpSpot_id,
     });
+
   };
 
   update = async ({ params, body }: Request) => {
