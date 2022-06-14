@@ -29,11 +29,11 @@ export class Address {
   @Column()
   number: number;
 
-  @Column()
+  @Column({type: "float"})
   latitude: number;
 
-  @Column()
-  longitude: string;
+  @Column({type: "float"})
+  longitude: number;
 
   @Column({ default: false })
   isDumpSpot: boolean;
