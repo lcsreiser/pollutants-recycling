@@ -5,7 +5,7 @@ import { User } from "../entities/User";
 interface IUserRepo {
   save: (user: Partial<User>) => Promise<User>;
   all: () => Promise<User[]>;
-  findOne: (payload: object) => Promise<User | null>;
+  findOne: (payload: object) => Promise<User>;
 }
 
 class UserRepo implements IUserRepo {
@@ -16,6 +16,7 @@ class UserRepo implements IUserRepo {
   }
 
   save = async (user: Partial<User>) => await this.ormRepo.save(user);
+
   all = async () => await this.ormRepo.find();
 
   findOne = async (payload: object) => {

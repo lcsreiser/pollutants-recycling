@@ -1,25 +1,43 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToOne } from "typeorm"
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  ManyToOne,
+  OneToOne,
+  JoinColumn,
+} from "typeorm";
 import { User } from "./User";
 
 @Entity("addresses")
 export class Address {
+  @PrimaryGeneratedColumn("uuid")
+  addressId?: string;
 
-    @PrimaryGeneratedColumn("uuid")
-    addressId?: string;
+  @Column()
+  zipCode: string;
 
-    @Column()
-    zipCode: string;
+  @Column()
+  street: string;
 
-    @Column()
-    complement: string;
+  @Column()
+  complement: string;
 
-    @Column()
-    number: number;
+  @Column()
+  state: string;
 
-    @Column({ default: false })
-    isDumpSpot: boolean;
+  @Column()
+  number: number;
 
-    @OneToOne(() => User, (user) => user.address)
-    user: User;
+  @Column()
+  latitude: number;
 
+  @Column()
+  longitude: string;
+
+  @Column({ default: false })
+  isDumpSpot: boolean;
+
+  @OneToOne(() => User, (user) => user.address)
+  user: User;
 }

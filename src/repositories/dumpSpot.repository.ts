@@ -1,11 +1,13 @@
-import { Repository, UpdateResult } from "typeorm";
+import { Repository, UpdateResult, DeleteResult } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { DumpSpot } from "../entities/DumpSpot";
 
 interface IDumpSpotRepo {
-    save: (dumpSpot: DumpSpot) => Promise<DumpSpot>;
-    findBy: (payload: object) => Promise<DumpSpot[]>;
+    save: (dumpSpot: Partial<DumpSpot>) => Promise<DumpSpot>;
+    findOne: (payload: object) => Promise<DumpSpot>;
+    all: () => Promise<DumpSpot[]>;
     update: (uuid: string, payload: object) => Promise<UpdateResult>;
+    delete: (id: string) => Promise<DeleteResult>;
 }
 
 class DumpSpotRepository implements IDumpSpotRepo {
@@ -15,11 +17,15 @@ class DumpSpotRepository implements IDumpSpotRepo {
         this.repo = AppDataSource.getRepository(DumpSpot)
     }
 
-    save = async (dumpSpot: DumpSpot) => await this.repo.save(dumpSpot);
+    save = async (dumpSpot: Partial<DumpSpot>) => await this.repo.save(dumpSpot);
 
-    findBy = async (payload: object) => await this.repo.findBy({...payload});
+    findOne = async (payload: object) => await this.repo.findOneBy({...payload});
+
+    all = async () => await this.repo.find();
 
     update = async (uuid: string, payload: object) => await this.repo.update(uuid, {...payload});
+
+    delete = async (id: string): Promise<DeleteResult> => await this.repo.delete(id);
 }
 
 export default new DumpSpotRepository();

@@ -5,7 +5,7 @@ import { Category } from "../entities/Category";
 interface ICategoryRepo {
   save: (category: Partial<Category>) => Promise<Category>;
   all: () => Promise<Category[]>;
-  findOne: (payload: object) => Promise<Category | null>;
+  findOne: (payload: object) => Promise<Category>;
 }
 
 class CategoryRepo implements ICategoryRepo {

@@ -17,7 +17,7 @@
   "name": "José",
   "email": "josé@email.com",
   "password": "senhaForte",
-  "zipCode": "11020004",
+  "zipCode": "11020325",
   "number": 736,
   "complement": "Apt 121" 
 }
@@ -34,7 +34,7 @@
   "email": "josé@email.com",
   "address":{
     "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "zipCode": "11020-004",
+    "zipCode": "11020325",
     "street": "AV. Afonso Pena",
     "number": 736,
     "complement": "Apt 121",
@@ -89,7 +89,7 @@
             "email": "josé@email.com",
             "address":{
                 "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020-004",
+                "zipCode": "11020325",
                 "street": "AV. Afonso Pena",
                 "number": 736,
                 "complement": "Apt 121",
@@ -104,7 +104,7 @@
             "email": "joao@email.com",
             "address":{
                 "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020-004",
+                "zipCode": "11020325",
                 "street": "AV. Afonso Pena",
                 "number": 736,
                 "complement": "Apt 121",
@@ -119,7 +119,7 @@
             "email": "maria@email.com",
             "address":{
                 "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020-004",
+                "zipCode": "11020325",
                 "street": "AV. Afonso Pena",
                 "number": 736,
                 "complement": "Apt 121",
@@ -151,7 +151,7 @@
     "email": "josé@email.com",
     "address":{
         "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020-004",
+        "zipCode": "11020325",
         "street": "AV. Afonso Pena",
         "number": 736,
         "complement": "Apt 121",
@@ -189,7 +189,7 @@
     "email": "josé@email.com",
     "address":{
         "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020-004",
+        "zipCode": "11020325",
         "street": "AV. Afonso Pena",
         "number": 732,
         "complement": "Apt 42",
@@ -214,11 +214,11 @@
 
 ```json
 {
-    "user removed with successful"
+  "message": "user successfully deleted""
 }
 ```
 
-</br>
+</br></br>
 
 ### Categories
 
@@ -290,13 +290,13 @@
 
 <h3>Busca de uma categoria</h3>
 
-`GET /categories/:categoryName - NO BODY `
+`GET /categories/:name - NO BODY `
 
 **Bearer Token Required**
 
 > Em caso de sucesso, a resposta será:
 
-`GET /categories/:categoryName - FORMATO DA RESPOSTA - STATUS 200`
+`GET /categories/:name - FORMATO DA RESPOSTA - STATUS 200`
 
 ```json
 {
@@ -309,45 +309,294 @@
 
 </br></br>
 
-<h3>Atualização de categorias</h3>
+### Itens
 
-`PATCH /categories/:categoryName - FORMATO DA REQUISIÇÃO `
+<h3>Cadastro de item</h3>
 
 **Bearer Token Required**
 
+`POST /items - FORMATO DA REQUISIÇÃO `
+
 ```json
 {
-  "unit": "Cartelas"
+  "name": "Garrafa de óleo",
+  "description": "Garrafa de óleo usado",
+  "quantity": "3 Litros",
+  "category": "Óleo" 
 }
 ```
 
 > Em caso de sucesso, a resposta será:
 
-`PATCH /categories/:categoryName - FORMATO DA RESPOSTA - STATUS 200`
+`POST /items - FORMATO DA RESPOSTA - STATUS 201`
 
 ```json
 {
+  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "name": "Garrafa de óleo",
+  "description": "Garrafa de óleo usado",
+  "quantity": "3 Litros",
+  "category": {
     "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "Remédios",
-    "unit": "Cartelas",
-    "description": "Descarte de remédios vencidos ou sem uso",
+    "name": "Óleo",
+    "unit": "Litros",
+    "description": "Óleo de cozinha usado",
+    } 
 }
 ```
 
 </br></br>
 
-<h3>Remoção de categorias</h3>
+<h3>Busca de um item</h3>
 
-`DELETE /categories/:categoryName - NO BODY `
+`GET /items/:id - NO BODY `
 
 **Bearer Token Required**
 
 > Em caso de sucesso, a resposta será:
 
-`DELETE /categories/:categoryName - FORMATO DA RESPOSTA - STATUS 204`
+`GET /items/:id - FORMATO DA RESPOSTA - STATUS 200`
 
 ```json
 {
-    "category removed with successful"
+  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "name": "Garrafa de óleo",
+  "description": "Garrafa de óleo usado",
+  "quantity": "3 Litros",
+  "category": {
+    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "name": "Óleo",
+    "unit": "Litros",
+    "description": "Óleo de cozinha usado",
+    } 
 }
 ```
+
+</br></br>
+
+<h3>Atualização de itens</h3>
+
+`PATCH /items/:id - FORMATO DA REQUISIÇÃO `
+
+**Bearer Token Required**
+
+```json
+{
+  "name": "Galão de óleo",
+  "description": "Galão de óleo usado",
+}
+```
+
+> Em caso de sucesso, a resposta será:
+
+`PATCH /items/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "name": "Galão de óleo",
+  "description": "Galão de óleo usado",
+  "quantity": "3 Litros",
+  "category": {
+    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "name": "Óleo",
+    "unit": "Litros",
+    "description": "Óleo de cozinha usado",
+    } 
+}
+```
+
+</br></br>
+
+<h3>Remoção de items</h3>
+
+`DELETE /items/:id - NO BODY `
+
+**Bearer Token Required**
+
+> Em caso de sucesso, a resposta será:
+
+`DELETE /items/:id - FORMATO DA RESPOSTA - STATUS 204`
+
+```json
+{
+    "message": "item successfully deleted""
+}
+```
+
+</br></br>
+
+### DumpSpot
+
+<h3>Cadastro de pontos de coleta</h3>
+
+**Bearer Token Required**
+
+`POST /dumpSpot - FORMATO DA REQUISIÇÃO `
+
+```json
+{
+  "name": "ONG NatureLive",
+  "zipCode": "11020325",
+  "number": 736,
+  "complement": "Apt 121" 
+}
+```
+
+> Em caso de sucesso, a resposta será:
+
+`POST /dumpSpot - FORMATO DA RESPOSTA - STATUS 201`
+
+```json
+{
+  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "name": "ONG NatureLive",
+  "address":{
+    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "zipCode": "11020325",
+    "street": "AV. Afonso Pena",
+    "number": 736,
+    "complement": "Apt 121",
+    "latitude": -23.976815351036432,
+    "longitude": -46.297928631145886,
+    "isDumpSpot": true
+  }
+}
+```
+</br></br>
+
+<h3>Busca de todos os pontos de coleta</h3>
+
+`GET /dumpSpot - NO BODY `
+
+**Bearer Token Required**
+
+> Em caso de sucesso, a resposta será:
+
+`GET /dumpSpot - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+  "dumpSpots":[
+    {
+      "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+      "name": "ONG NatureLive",
+      "address":{
+          "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+          "zipCode": "11020325",
+          "street": "AV. Afonso Pena",
+          "number": 736,
+          "complement": "Apt 121",
+          "latitude": -23.976815351036432,
+          "longitude": -46.297928631145886,
+          "isDumpSpot": true
+      }
+    },
+    {
+      "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+      "name": "Prefeitura de Santo André",
+      "address":{
+          "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+          "zipCode": "09210-500",
+          "street": "AV. Estados Unidos",
+          "number": 736,
+          "complement": "Apt 121",
+          "latitude": -23.976815351036432,
+          "longitude": -46.297928631145886,
+          "isDumpSpot": true
+      }
+    }
+  ]
+}
+
+```
+
+</br></br>
+
+<h3>Busca de um ponto de coleta</h3>
+
+`GET /dumpSpot/:dumpSpot_id - NO BODY `
+
+**Bearer Token Required**
+
+> Em caso de sucesso, a resposta será:
+
+`GET /dumpSpot/:dumpSpot_id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "name": "ONG NatureLive",
+    "address":{
+        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+        "zipCode": "11020325",
+        "street": "AV. Afonso Pena",
+        "number": 736,
+        "complement": "Apt 121",
+        "latitude": -23.976815351036432,
+        "longitude": -46.297928631145886,
+        "isDumpSpot": true
+    }
+}
+```
+
+</br></br>
+
+<h3>Atualização de um ponto de coleta</h3>
+
+`PATCH /dumpSpot/:dumpSpot_id - FORMATO DA REQUISIÇÃO `
+
+**Bearer Token Required**
+
+```json
+{
+  "name": "ONG NatLive"
+}
+```
+
+> Em caso de sucesso, a resposta será:
+
+`PATCH /dumpSpot/:dumpSpot_id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "name": "ONG NatLive",
+    "address":{
+        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+        "zipCode": "11020325",
+        "street": "AV. Afonso Pena",
+        "number": 736,
+        "complement": "Apt 121",
+        "latitude": -23.976815351036432,
+        "longitude": -46.297928631145886,
+        "isDumpSpot": true
+    }
+}
+```
+
+</br></br>
+
+<h3>Remoção de um ponto de coleta</h3>
+
+`DELETE /dumpSpot/:dumpSpot_id - FORMATO DA REQUISIÇÃO `
+
+**Bearer Token Required**
+
+```json
+{
+  "name": "ONG NatLive"
+}
+```
+
+> Em caso de sucesso, a resposta será:
+
+`DELETE /dumpSpot/:dumpSpot_id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+  "message": "dumpSpot successfully deleted""
+}
+```
+
+</br></br>

@@ -6,7 +6,7 @@ interface IItemRepo {
     save: (item: Item) => Promise<(Item)>;
     update: (uuid: string, payload: object) => Promise<UpdateResult>;
     findBy: (payload: object) => Promise<Item[]>;
-    findOneBy: (payload: object) => Promise<Item | null>;
+    findOneBy: (payload: object) => Promise<Item>;
     delete: (id: string) => Promise<DeleteResult>;
 }
 
