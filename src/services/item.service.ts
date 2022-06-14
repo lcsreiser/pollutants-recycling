@@ -1,6 +1,6 @@
 import { Request } from "express";
 import { Category, Item, User } from "../entities";
-import { categoryRepository, itemRepository } from "../repositories";
+import { categoryRepository, itemRepository, userRepository } from "../repositories";
 import { serializedCreateItemSchema } from "../schemas";
 
 interface IItemUpdated {
@@ -26,29 +26,28 @@ class ItemService {
       stripUnknown: true,
     });
   };
+
   getOneItem = async (id: string) => {
-    const item = await itemRepository.findOneBy({ id: id });
+    const item = await itemRepository.findOneBy({ itemId: id });
 
     return await serializedCreateItemSchema.validate(item, {
       stripUnknown: true,
     });
   };
+
   updateItem = async (id: string, infoToUpdated: IItemUpdated) => {
-    const itemUpdated = this.getOneItem(id);
-    const item = await itemRepository.update(
-      (
-        await itemUpdated
-      ).id,
-      infoToUpdated
-    );
+    const itemUpdated = await itemRepository.findOneBy({itemId: id});
+    await itemRepository.update(itemUpdated.itemId, infoToUpdated);
+    const itemResponse = await itemRepository.findOneBy({itemId: id})
 
-    return await serializedCreateItemSchema.validate(item, {
+    return await serializedCreateItemSchema.validate(itemResponse, {
       stripUnknown: true,
     });
   };
+
   deleteItem = async (id: string) => {
-    const item = this.getOneItem(id);
-    await itemRepository.delete((await item).id);
+    const item = await itemRepository.findOneBy({itemId: id});
+    await itemRepository.delete(item.itemId);
 
     return true;
   };

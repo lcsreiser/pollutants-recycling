@@ -19,7 +19,7 @@ const createDumpSpotSchema = yup.object().shape({
 });
 
 const serializedCreateDumpSpotSchema = yup.object().shape({
-  id: yup.string().uuid().required(),
+  dumpSpot_id: yup.string().uuid().required(),
   name: yup.string().required(),
   address: yup.object().shape({
     zipCode: yup.string().required(),
