@@ -17,9 +17,11 @@
   "name": "José",
   "email": "josé@email.com",
   "password": "senhaForte",
-  "zipCode": "11020325",
-  "number": 736,
-  "complement": "Apt 121" 
+  "address": {
+    "zipCode": "11020325",
+    "number": 736,
+    "complement": "Apt 121" 
+  }
 }
 ```
 
@@ -29,17 +31,17 @@
 
 ```json
 {
-  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
   "name": "José",
   "email": "josé@email.com",
   "address":{
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
     "zipCode": "11020325",
     "street": "AV. Afonso Pena",
     "number": 736,
     "complement": "Apt 121",
-    "latitude": -23.976815351036432,
-    "longitude": -46.297928631145886,
+    "city": "Santos",
+    "state": "SP",
     "isDumpSpot": false
   }
 }
@@ -84,49 +86,34 @@
 {
     "users":[
         {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "José",
-            "email": "josé@email.com",
-            "address":{
-                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020325",
-                "street": "AV. Afonso Pena",
-                "number": 736,
-                "complement": "Apt 121",
-                "latitude": -23.976815351036432,
-                "longitude": -46.297928631145886,
-                "isDumpSpot": false
-            }
+          "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+          "name": "José",
+          "email": "josé@email.com",
+          "address":{
+            "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+            "zipCode": "11020325",
+            "street": "AV. Afonso Pena",
+            "number": 736,
+            "complement": "Apt 121",
+            "city": "Santos",
+            "state": "SP",
+            "isDumpSpot": false
+          }
         },
         {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "Jpão",
-            "email": "joao@email.com",
-            "address":{
-                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020325",
-                "street": "AV. Afonso Pena",
-                "number": 736,
-                "complement": "Apt 121",
-                "latitude": -23.976815351036432,
-                "longitude": -46.297928631145886,
-                "isDumpSpot": false
-            }
-        },
-        {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "Maria",
-            "email": "maria@email.com",
-            "address":{
-                "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-                "zipCode": "11020325",
-                "street": "AV. Afonso Pena",
-                "number": 736,
-                "complement": "Apt 121",
-                "latitude": -23.976815351036432,
-                "longitude": -46.297928631145886,
-                "isDumpSpot": false
-            }
+          "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+          "name": "Gustavo",
+          "email": "gustavo3@email.com",
+          "address":{
+            "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+            "zipCode": "91350160",
+            "street": "Rua Guilherme Klippel",,
+            "number": 305,
+            "complement": "casas",
+            "city": "Porto Alegre",
+            "state": "RS",
+            "isDumpSpot": false
+          }
         }
     ]
 }
@@ -146,19 +133,19 @@
 
 ```json
 {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "José",
-    "email": "josé@email.com",
-    "address":{
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020325",
-        "street": "AV. Afonso Pena",
-        "number": 736,
-        "complement": "Apt 121",
-        "latitude": -23.976815351036432,
-        "longitude": -46.297928631145886,
-        "isDumpSpot": false
-    }
+  "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "name": "José",
+  "email": "josé@email.com",
+  "address":{
+    "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "zipCode": "11020325",
+    "street": "AV. Afonso Pena",
+    "number": 736,
+    "complement": "Apt 121",
+    "city": "Santos",
+    "state": "SP",
+    "isDumpSpot": false
+  }
 }
 ```
 
@@ -184,19 +171,19 @@
 
 ```json
 {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "José Carlos",
-    "email": "josé@email.com",
-    "address":{
-        "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020325",
-        "street": "AV. Afonso Pena",
-        "number": 732,
-        "complement": "Apt 42",
-        "latitude": -23.9768153510363425,
-        "longitude": -46.2979286311894325,
-        "isDumpSpot": false
-    }
+  "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "name": "José Carlos",
+  "email": "josé@email.com",
+  "address":{
+    "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "zipCode": "11020325",
+    "street": "AV. Afonso Pena",
+    "number": 732,
+    "complement": "Apt 42",
+    "city": "Santos",
+    "state": "SP",
+    "isDumpSpot": false
+  }
 }
 ```
 
