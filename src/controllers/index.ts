@@ -1,3 +1,3 @@
-import {signup} from "./signup.controller"
+import userController from "./user.controller";
 
-export {signup}
+export { userController };

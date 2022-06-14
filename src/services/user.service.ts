@@ -22,12 +22,16 @@ class UserService {
     location,
   }: Request): Promise<AssertsShape<any>> => {
     (validated as User).password = await hash((validated as User).password, 10);
+    console.log("location", location);
 
     const address: Address = await addressRepository.save({
       ...(location as Address),
     });
 
-    const user: User = await userRepository.save(validated as User);
+    const user: User = await userRepository.save({
+      ...(validated as User),
+      address,
+    });
 
     return await serializedCreateUserSchema.validate(user, {
       stripUnknown: true,
