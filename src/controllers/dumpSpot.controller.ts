@@ -2,24 +2,23 @@ import { Request, Response } from "express";
 import dumpSpotService from "../services/dumpSpot.service";
 
 class DumpSpotController {
-    createController = async (req: Request, res: Response) =>{
-        const newDumpSpot = await dumpSpotService.create(req);
-        
-        return res.status(201).json(newDumpSpot);
-    } 
+  createController = async (req: Request, res: Response) => {
+    const newDumpSpot = await dumpSpotService.create(req);
 
-    getDumpSpotsById = async (req: Request, res: Response) => {
-        const dumpSpot = await dumpSpotService.retrieve(req);
+    return res.status(201).json(newDumpSpot);
+  };
 
-        return res.status(200).json(dumpSpot);
-    }
+  getDumpSpotsById = async (req: Request, res: Response) => {
+    const dumpSpot = await dumpSpotService.retrieveAll(req);
 
-    updateDumpSpot = async (req: Request, res: Response) => {
-        const updatedDumpSpot = await dumpSpotService.update(req);
-        
-        return res.status(200).json(updatedDumpSpot);
-    }
+    return res.status(200).json(dumpSpot);
+  };
 
+  updateDumpSpot = async (req: Request, res: Response) => {
+    const updatedDumpSpot = await dumpSpotService.update(req);
+
+    return res.status(200).json(updatedDumpSpot);
+  };
 }
 
 export default new DumpSpotController();

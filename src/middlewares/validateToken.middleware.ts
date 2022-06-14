@@ -2,10 +2,10 @@ import { NextFunction, Request, Response } from "express";
 import { JwtPayload, verify, VerifyErrors } from "jsonwebtoken";
 import { User } from "../entities/User";
 import { ErrorHandler } from "../errors/appError";
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
+import validateSchemaMiddleware from "./validateSchema.middleware";
 
-dotenv.config()
-
+dotenv.config();
 
 const validateToken = async (
   req: Request,
