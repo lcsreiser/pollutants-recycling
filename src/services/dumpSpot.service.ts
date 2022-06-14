@@ -9,16 +9,20 @@ class DumpSpotService {
       ...(location as Address),
     });
 
-    const newDumpSpot: DumpSpot = await dumpSpotRepository.save({...(validated as Partial<DumpSpot>), address});
+    const newDumpSpot: DumpSpot = await dumpSpotRepository.save({
+      ...(validated as Partial<DumpSpot>),
+      address,
+    });
     return await serializedCreateDumpSpotSchema.validate(newDumpSpot, {
       stripUnknown: true,
     });
   };
 
-  retrieve = async ({ params }: Request) => {
-    const dumpSpot: DumpSpot = await dumpSpotRepository.findOne({
-      dumpSpot_id: params.dumpSpot_id,
-    });
+  retrieveAll = async ({ params, body, validated, location }: Request) => {
+    if (body) {
+    }
+
+    const dumpSpots: DumpSpot[] = await dumpSpotRepository.all();
   };
 
   update = async ({ params, body }: Request) => {

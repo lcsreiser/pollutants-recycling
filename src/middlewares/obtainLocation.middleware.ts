@@ -10,9 +10,9 @@ const obtaintLocationMiddleware = async (
   // pegar o nome da rua referente ao CEP informado pelo usuário
   await googleApi
     .get(
-      `/geocode/json?key=${process.env.GOOGLE_API_KEY}&address=${
-        (req.validated as User).address.zipCode
-      }`
+      `/geocode/json?key=${
+        process.env.GOOGLE_API_KEY
+      }&address=${encodeURIComponent((req.validated as User).address.zipCode)}`
     )
     .then((response) => {
       req.location = {
@@ -26,9 +26,11 @@ const obtaintLocationMiddleware = async (
   // pegar a lat e lon baseado na rua e número do endereço do usuário
   await googleApi
     .get(
-      `/geocode/json?key=${process.env.GOOGLE_API_KEY}&address=${
+      `/geocode/json?key=${
+        process.env.GOOGLE_API_KEY
+      }&address=${encodeURIComponent(
         req.location[1].long_name
-      }, ${(req.validated as User).address.number}`
+      )}, ${encodeURIComponent((req.validated as User).address.number)}`
     )
     .then((response) => {
       req.location = {

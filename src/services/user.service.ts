@@ -22,7 +22,6 @@ class UserService {
     location,
   }: Request): Promise<AssertsShape<any>> => {
     (validated as User).password = await hash((validated as User).password, 10);
-    console.log("location", location);
 
     const address: Address = await addressRepository.save({
       ...(location as Address),
