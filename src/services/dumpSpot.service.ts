@@ -31,7 +31,7 @@ class DumpSpotService {
     const dumpSpotsAddresses: Address[] = await addressRepository.retrieve(city);
     console.log("dumpSpotsAddresses", dumpSpotsAddresses)
     
-    const dumpSpots: DumpSpot[] = await Promise.all( dumpSpotsAddresses.map(async dumpSpotAddress => await dumpSpotRepository.findOne({address: dumpSpotAddress.addressId})));
+    const dumpSpots: DumpSpot[] = await Promise.all( dumpSpotsAddresses.map(async dumpSpotAddress => await dumpSpotRepository.findOne({address: dumpSpotAddress})));
 
     return dumpSpots;
   };
