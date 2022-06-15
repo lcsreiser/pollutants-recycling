@@ -9,9 +9,9 @@ class DumpSpotController {
   };
 
   getDumpSpotsById = async (req: Request, res: Response) => {
-    const dumpSpot = await dumpSpotService.retrieveAll(req);
+    const dumpSpots = await dumpSpotService.retrieveAll(req);
 
-    return res.status(200).json(dumpSpot);
+    return res.status(200).json(dumpSpots);
   };
 
   updateDumpSpot = async (req: Request, res: Response) => {
