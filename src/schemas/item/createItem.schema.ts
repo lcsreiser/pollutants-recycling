@@ -3,10 +3,7 @@ import * as yup from "yup";
 const createItemSchema = yup.object().shape({
   name: yup.string().required(),
   description: yup.string().required(),
-  category: yup
-    .mixed()
-    .oneOf(["Óleo", "Eletrônicos", "Medicamentos"])
-    .required(),
+  category: yup.string().lowercase().required(),
   quantity: yup.number().required(),
 });
 

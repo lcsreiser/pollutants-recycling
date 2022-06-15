@@ -18,10 +18,7 @@ class DumpSpotService {
     });
   };
 
-  retrieveAll = async ({ params, body, validated, location }: Request) => {
-    if (body) {
-    }
-
+  retrieveAll = async ({ params, body }: Request) => {
     const dumpSpots: DumpSpot[] = await dumpSpotRepository.all();
   };
 
