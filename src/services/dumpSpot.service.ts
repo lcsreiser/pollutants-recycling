@@ -19,17 +19,26 @@ class DumpSpotService {
     });
   };
 
-  retrieveAll = async ({body, decoded }: Request) => {
+  retrieveAll = async ({ body, decoded }: Request) => {
     let city = "";
-    
+
     if (body.zipCode) {
       city = await obtainLocation(body.zipCode);
-    }else{
+    } else {
       city = decoded.address.city;
     }
 
-    const dumpSpotsAddresses: Address[] = await addressRepository.retrieve(city);
-    const dumpSpots: DumpSpot[] = await Promise.all( dumpSpotsAddresses.map(async dumpSpotAddress => await dumpSpotRepository.findOne({address: dumpSpotAddress.addressId})));
+    const dumpSpotsAddresses: Address[] = await addressRepository.retrieve(
+      city
+    );
+    const dumpSpots: DumpSpot[] = await Promise.all(
+      dumpSpotsAddresses.map(
+        async (dumpSpotAddress) =>
+          await dumpSpotRepository.findOne({
+            address: dumpSpotAddress.addressId,
+          })
+      )
+    );
 
     return dumpSpots;
   };
