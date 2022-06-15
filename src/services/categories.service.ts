@@ -41,7 +41,7 @@ class CategoriesService {
             id: params.id,
         })
         
-        return await createCategorySchema.validate(category, {
+        return await serializedCategorySchema.validate(category, {
             stripUnknown: true,
         })
     }
