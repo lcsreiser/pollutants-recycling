@@ -20,19 +20,13 @@ route.post(
   dumpSpotController.createController
 );
 
-route.get(
-  "/dumpSpot",
-  validateToken,
-  verifyDumpSpotExists,
-  dumpSpotController.getDumpSpotsById
-);
 
 route.get(
   "/dumpSpotFree",
   verifyCategoryIsAcceptedMiddleware,
   verifyZipCodeMiddleware,
   validateToken,
-  dumpSpotController.getDumpSpotsById
+  dumpSpotController.getDumpSpots
 );
 
 route.patch(

@@ -22,7 +22,7 @@ class AddressRepository implements IAdressRepo{
     
     update = async (uuid: string, payload: object) => await this.repo.update(uuid, {...payload});
 
-    retrieve = async (payload: string) => await this.repo.find({where: {isDumpSpot: true, city: payload}})
+    retrieve = async (city: string) => await this.repo.find({where: {isDumpSpot: true, city: city}});
 }
 
 export default new AddressRepository();

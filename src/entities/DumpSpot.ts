@@ -15,7 +15,7 @@ export class  DumpSpot {
     @OneToMany(() => History, (history) => history.dumpSpot)
     histories: History[];
  
-    @OneToOne(() => Address, (address)=> address)
+    @OneToOne(() => Address, (address)=> address, {eager: true})
     @JoinColumn()
     address: Address;
 
