@@ -2,6 +2,7 @@ import { Request } from "express";
 import { Address, DumpSpot } from "../entities";
 import { addressRepository, dumpSpotRepository } from "../repositories";
 import { serializedCreateDumpSpotSchema } from "../schemas";
+import obtainLocation from "../utils/obtainLocation";
 
 class DumpSpotService {
   create = async ({ validated, location }: Request) => {
@@ -18,11 +19,19 @@ class DumpSpotService {
     });
   };
 
-  retrieveAll = async ({ params, body, validated, location }: Request) => {
-    if (body) {
+  retrieveAll = async ({body, decoded }: Request) => {
+    let city = "";
+    
+    if (body.zipCode) {
+      city = await obtainLocation(body.zipCode);
+    }else{
+      city = decoded.address.city;
     }
 
-    const dumpSpots: DumpSpot[] = await dumpSpotRepository.all();
+    const dumpSpotsAddresses: Address[] = await addressRepository.retrieve(city);
+    const dumpSpots: DumpSpot[] = await Promise.all( dumpSpotsAddresses.map(async dumpSpotAddress => await dumpSpotRepository.findOne({address: dumpSpotAddress.addressId})));
+
+    return dumpSpots;
   };
 
   update = async ({ params, body }: Request) => {
