@@ -18,10 +18,10 @@ export class Item {
     @Column()
     quantity: number;
 
-    @ManyToOne(() => Category, (category) => category.items)
+    @ManyToOne(() => Category, (category) => category.items, {eager: true})
     category: Category;
 
-    @ManyToOne(() => User, (user) => user.items)
+    @ManyToOne(() => User, (user) => user.items, {eager: true})
     owner: User;
 
     @OneToOne(() => History , (history) => history.item)
