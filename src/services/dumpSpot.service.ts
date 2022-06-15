@@ -20,15 +20,17 @@ class DumpSpotService {
   };
 
   retrieveAll = async ({body, decoded }: Request) => {
-    let city = "";
+    let city: string = "";
     
     if (body.zipCode) {
       city = await obtainLocation(body.zipCode);
     }else{
       city = decoded.address.city;
     }
-
+    console.log("city", city)
     const dumpSpotsAddresses: Address[] = await addressRepository.retrieve(city);
+    console.log("dumpSpotsAddresses", dumpSpotsAddresses)
+    
     const dumpSpots: DumpSpot[] = await Promise.all( dumpSpotsAddresses.map(async dumpSpotAddress => await dumpSpotRepository.findOne({address: dumpSpotAddress.addressId})));
 
     return dumpSpots;

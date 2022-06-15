@@ -1,7 +1,7 @@
 import { googleApi } from "../utils/googleApi";
 
 const obtainLocation = async (zipCode) =>{
-    let location = "";
+    let location: string = "";
     await googleApi
     .get(
       `/geocode/json?key=${
@@ -9,9 +9,7 @@ const obtainLocation = async (zipCode) =>{
       }&address=${encodeURIComponent(zipCode)}`
     )
     .then((response) => {
-       location = {
-        ...response.data.results[0].address_components[3].long_name,
-      };
+       location = response.data.results[0].address_components[3]["short_name"];
     })
     .catch((err) => {
       console.log(err);

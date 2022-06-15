@@ -11,6 +11,7 @@ const verifyCategoryIsAcceptedMiddleware = async (
 ) => {
   //se no body da requisição não houver uma categoria, apenas avança
   if (!req.body.category) {
+
     return next();
   }
 
