@@ -24,12 +24,11 @@ class DumpSpotService {
     
     if (body.zipCode) {
       city = await obtainLocation(body.zipCode);
-    }else{
+    } else {
       city = decoded.address.city;
     }
-    console.log("city", city)
+
     const dumpSpotsAddresses: Address[] = await addressRepository.retrieve(city);
-    console.log("dumpSpotsAddresses", dumpSpotsAddresses)
     
     const dumpSpots: DumpSpot[] = await Promise.all( dumpSpotsAddresses.map(async dumpSpotAddress => await dumpSpotRepository.findOne({address: dumpSpotAddress})));
 
