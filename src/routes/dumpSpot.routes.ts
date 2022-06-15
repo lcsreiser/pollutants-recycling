@@ -45,5 +45,4 @@ route.get("/:latitude&:longitude");
 
 export default route;
 
-//to do
-//middleware de verificacao de usuario para atualizar locais de coleta
+
