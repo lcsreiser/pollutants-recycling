@@ -21,7 +21,7 @@ class DumpSpotService {
 
   retrieveAll = async ({body, decoded }: Request) => {
     let city: string = "";
-    
+
     if (body.zipCode) {
       city = await obtainLocation(body.zipCode);
     } else {
