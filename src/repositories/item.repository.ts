@@ -1,31 +1,34 @@
 import { ObjectType, Repository, UpdateResult, DeleteResult } from "typeorm";
-import { AppDataSource } from "../data-source";
+import AppDataSource from "../data-source";
 import { Item } from "../entities/Item";
 
 interface IItemRepo {
-    save: (item: Item) => Promise<(Item)>;
-    update: (uuid: string, payload: object) => Promise<UpdateResult>;
-    findBy: (payload: object) => Promise<Item[]>;
-    findOneBy: (payload: object) => Promise<Item>;
-    delete: (id: string) => Promise<DeleteResult>;
+  save: (item: Item) => Promise<Item>;
+  update: (uuid: string, payload: object) => Promise<UpdateResult>;
+  findBy: (payload: object) => Promise<Item[]>;
+  findOneBy: (payload: object) => Promise<Item>;
+  delete: (id: string) => Promise<DeleteResult>;
 }
 
 class ItemRepository implements IItemRepo {
-    private repo: Repository<Item>;
-    
-    constructor() {
-        this.repo = AppDataSource.getRepository(Item)
-    }
+  private repo: Repository<Item>;
 
-    save = async (item: Item) => await this.repo.save(item);
+  constructor() {
+    this.repo = AppDataSource.getRepository(Item);
+  }
 
-    update = async (uuid: string, payload: object) => await this.repo.update(uuid, {...payload});
+  save = async (item: Item) => await this.repo.save(item);
 
-    findBy = async (payload: object) => await this.repo.findBy({...payload});
+  update = async (uuid: string, payload: object) =>
+    await this.repo.update(uuid, { ...payload });
 
-    findOneBy = async (payload: object) => await this.repo.findOneBy({...payload});
+  findBy = async (payload: object) => await this.repo.findBy({ ...payload });
 
-    delete = async (id: string): Promise<DeleteResult> => await this.repo.delete(id);
+  findOneBy = async (payload: object) =>
+    await this.repo.findOneBy({ ...payload });
+
+  delete = async (id: string): Promise<DeleteResult> =>
+    await this.repo.delete(id);
 }
 
 export default new ItemRepository();

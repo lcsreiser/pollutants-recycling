@@ -1,5 +1,5 @@
 import { Repository, UpdateResult, DeleteResult } from "typeorm";
-import { AppDataSource } from "../data-source";
+import AppDataSource from "../data-source";
 import { DumpSpot } from "../entities/DumpSpot";
 
 interface IDumpSpotRepo {
