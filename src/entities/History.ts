@@ -1,5 +1,4 @@
 import { CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Category } from "./Category";
 import { DumpSpot } from "./DumpSpot";
 import { Item } from "./Item";
 import { User } from "./User";

@@ -3,7 +3,7 @@ import * as yup from "yup";
 const createHistorySchema = yup.object().shape({
     item: yup.string().required(),
     dumpSpot: yup.string().optional(),
-    receiver: yup.string().optional()
+    userCollector: yup.string().optional()
 })
 
 const serializedCreateHistorySchema = yup.object().shape({
@@ -48,3 +48,6 @@ const serializedCreateHistorySchema = yup.object().shape({
         }),
     }).optional()
 })
+
+
+export { createHistorySchema, serializedCreateHistorySchema }
