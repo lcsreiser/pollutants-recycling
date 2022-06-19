@@ -14,7 +14,7 @@ export class History {
 
     @OneToOne(()=>Item, (item)=> item.histories)
     @JoinColumn()
-    item: string;
+    item: Item;
 
     @ManyToOne(() => User, (user) => user.histories)
     provider: User;
