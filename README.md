@@ -10,7 +10,7 @@
 
 <h3>Cadastro de usuários</h3>
 
-`POST /users - FORMATO DA REQUISIÇÃO `
+`POST /users/signup - FORMATO DA REQUISIÇÃO `
 
 ```json
 {
@@ -27,7 +27,7 @@
 
 > Em caso de sucesso, a resposta será:
 
-`POST /users - FORMATO DA RESPOSTA - STATUS 201`
+`POST /users/signup - FORMATO DA RESPOSTA - STATUS 201`
 
 ```json
 {
@@ -62,90 +62,11 @@
 
 > Em caso de sucesso, a resposta será:
 
-`POST /login - FORMATO DA RESPOSTA - STATUS 200`
+`POST /users/signin - FORMATO DA RESPOSTA - STATUS 200`
 
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU0NWFiMTBkLTJmZjUtNDRmYy1hMzM0LWQ3ZGZkMzk4OTJiYiIsImlhdCI6MTY1Mzc2MDMzNywiZXhwIjoxNjUzNzYzOTM3fQ.ECH1rK8WvGkzY2ghEP5TJW4ZD8cOjeGfyvgSwn9ZAfs"
-}
-```
-
-</br></br>
-
-<h3>Busca de todos os usuários</h3>
-
-`GET /users - NO BODY `
-
-**Bearer Token Required**
-
-> Em caso de sucesso, a resposta será:
-
-`GET /users - FORMATO DA RESPOSTA - STATUS 200`
-
-```json
-{
-    "users":[
-        {
-          "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-          "name": "José",
-          "email": "josé@email.com",
-          "address":{
-            "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "zipCode": "11020325",
-            "street": "AV. Afonso Pena",
-            "number": 736,
-            "complement": "Apt 121",
-            "city": "Santos",
-            "state": "SP",
-            "isDumpSpot": false
-          }
-        },
-        {
-          "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-          "name": "Gustavo",
-          "email": "gustavo3@email.com",
-          "address":{
-            "addressId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "zipCode": "91350160",
-            "street": "Rua Guilherme Klippel",,
-            "number": 305,
-            "complement": "casas",
-            "city": "Porto Alegre",
-            "state": "RS",
-            "isDumpSpot": false
-          }
-        }
-    ]
-}
-```
-
-</br></br>
-
-<h3>Busca de um usuário</h3>
-
-`GET /users/:id - NO BODY `
-
-**Bearer Token Required**
-
-> Em caso de sucesso, a resposta será:
-
-`GET /users/:id - FORMATO DA RESPOSTA - STATUS 200`
-
-```json
-{
-  "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-  "name": "José",
-  "email": "josé@email.com",
-  "address":{
-    "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "zipCode": "11020325",
-    "street": "AV. Afonso Pena",
-    "number": 736,
-    "complement": "Apt 121",
-    "city": "Santos",
-    "state": "SP",
-    "isDumpSpot": false
-  }
 }
 ```
 
@@ -229,7 +150,7 @@
 
 ```json
 {
-  "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "categoryId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
   "name": "Óleo",
   "unit": "Litros",
   "description": "Óleo de cozinha usado",
@@ -252,20 +173,20 @@
 {
     "categories":[
         {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "Óleo",
+            "categoryId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+            "name": "óleo",
             "unit": "Litros",
             "description": "Óleo de cozinha usado",
         },
         {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "Eletrônico",
+            "categoryId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+            "name": "eletrônico",
             "unit": "Quilos",
             "description": "Equipmentos eletrônicos quebrados ou inutilizados",
         },
         {
-            "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-            "name": "Remédios",
+            "categoryId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+            "name": "remédios",
             "unit": "Caixas",
             "description": "Descarte de remédios vencidos ou sem uso",
         }
@@ -287,14 +208,42 @@
 
 ```json
 {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "Remédios",
-    "unit": "Caixas",
-    "description": "Descarte de remédios vencidos ou sem uso",
+    "categoryId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "name": "óleo",
+    "unit": "Litros",
+    "description": "Óleo de cozinha usado",
 }
 ```
 
 </br></br>
+
+<h3>Atualizaçõa de uma categoria</h3>
+
+`PATCH /categories/:id`
+
+```json
+{
+  "name": "lixo",
+  "unit": "galão",
+  "description": "qualquer lixo"
+}
+```
+
+> em caso de sucesso a resposta será:
+
+`PATCH /categories/:id - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+  "categoryId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+  "description": "qualquer lixo",
+  "unit": "galão",
+  "name": "lixo"
+}
+
+```
+
+<br></br>
 
 ### Itens
 
@@ -315,7 +264,7 @@
 
 > Em caso de sucesso, a resposta será:
 
-`POST /items - FORMATO DA RESPOSTA - STATUS 201`
+`POST /items - FORMATO DA RESPOSTA - STATUS 20`
 
 ```json
 {
@@ -351,11 +300,14 @@
   "description": "Garrafa de óleo usado",
   "quantity": "3 Litros",
   "category": {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
+    "categoryId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
     "name": "Óleo",
-    "unit": "Litros",
-    "description": "Óleo de cozinha usado",
-    } 
+    },
+  "owner": {
+		"userId": "1061c3c3-18d0-4c5c-9d4e-bc09266382d7",
+		"name": "Thiago",
+		"email": "thiago@kenzie.com",
+	}, 
 }
 ```
 
