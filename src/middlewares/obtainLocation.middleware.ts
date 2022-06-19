@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { DumpSpot } from "../entities";
 import { User } from "../entities/User";
 import { googleApi } from "../utils/googleApi";
 
@@ -12,7 +13,7 @@ const obtaintLocationMiddleware = async (
     .get(
       `/geocode/json?key=${
         process.env.GOOGLE_API_KEY
-      }&address=${encodeURIComponent((req.validated as User).address.zipCode)}`
+      }&address=${encodeURIComponent((req.validated as User | DumpSpot).address.zipCode)}`
     )
     .then((response) => {
       req.location = {
@@ -30,7 +31,7 @@ const obtaintLocationMiddleware = async (
         process.env.GOOGLE_API_KEY
       }&address=${encodeURIComponent(
         req.location[1].long_name
-      )}, ${encodeURIComponent((req.validated as User).address.number)}`
+      )}, ${encodeURIComponent((req.validated as User | DumpSpot).address.number)}`
     )
     .then((response) => {
       req.location = {
