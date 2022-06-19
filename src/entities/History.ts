@@ -23,5 +23,5 @@ export class History {
     dumpSpot?: DumpSpot;
 
     @ManyToOne(() => User, (user) => user.histories)
-    userCollector?: DumpSpot;
-}
+    userCollector?: User;
+} 
