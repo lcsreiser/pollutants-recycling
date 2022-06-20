@@ -3,13 +3,18 @@ import { faker } from "@faker-js/faker";
 import { existsSync } from "fs";
 import path from "path";
 import { unlink } from "fs/promises";
-import { User } from "../entities";
+import { Address, User } from "../entities";
 import { DataSource } from "typeorm";
 
 const generateUser = (): Partial<User> => {
-  const firstName = faker.name.firstName().toLowerCase();
-  const email = faker.internet.email(firstName).toLowerCase();
+  const name = faker.name.firstName().toLowerCase();
+  const email = faker.internet.email(name).toLowerCase();
   const password = faker.datatype.string(10);
+  const address = {
+    zipCode: faker.address.zipCode("########"),
+    complement: "casa",
+    number: faker.address.buildingNumber(),
+  };
 
   return { email, password };
 };

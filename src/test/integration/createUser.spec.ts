@@ -1,7 +1,9 @@
 import supertest from "supertest";
-import { Connection } from "..";
+import { Connection, generateUser } from "..";
 import app from "../../app";
-import { User } from "../../entities";
+import { Address, User } from "../../entities";
+import { userService } from "../../services";
+import AppDataSource from "../../data-source";
 
 describe("Create user router | Integration tests", () => {
   const dbConnection = new Connection();
@@ -20,17 +22,56 @@ describe("Create user router | Integration tests", () => {
   it("Return: User as JSON response | Status code: 201", async () => {
     const user: Partial<User> = {
       name: "john",
-      email: "email@test.com",
-      password: "1234",
+      email: "john@mail.com",
+      password: "123456",
+      address: {
+        zipCode: "88085435",
+        number: 300,
+        complement: "casa",
+      },
     };
 
     const response = await supertest(app)
       .post("/users/signup")
       .send({ ...user });
 
+    console.log(user);
+    console.log(response.body);
+
     expect(response.statusCode).toBe(201);
-    //no teste ta retornando 400, acho que é porque falta o endereço mas não estou sabendo colocar
     expect(response.body).toHaveProperty("email");
     expect(response.body.email).toStrictEqual(user.email);
   });
+
+  // test("Return: User as JSON response | Status code: 201", async () => {
+  //   const email = "email@mail.com";
+  //   const name = "name";
+  //   const password = "123456";
+
+  //   const userData = { email, name, password };
+
+  //   const newUser = await userService(userData);
+
+  //   expect(newUser).toEqual(
+  //     expect.objectContaining({
+  //       id: 1,
+  //       email,
+  //       name,
+  //       password,
+  //     })
+  //   );
+  // });
+
+  // it("Return: Body error, missing password | Status code: 400", async () => {
+  //   const { password, ...user } = generateUser();
+  //   const response = await supertest(app)
+  //     .post("/users/signup")
+  //     .send({ ...user });
+
+  //   expect(response.status).toBe(400);
+  //   expect(response.body).toHaveProperty("message");
+  //   expect(response.body).toStrictEqual({
+  //     message: ["password is a required field"],
+  //   });
+  // });
 });
