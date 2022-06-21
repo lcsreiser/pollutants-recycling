@@ -21,7 +21,7 @@ route.post(
 );
 
 route.get(
-  "/dumpSpotFree",
+  "/free",
   verifyCategoryIsAcceptedMiddleware,
   verifyZipCodeMiddleware,
   validateToken,
@@ -37,7 +37,7 @@ route.patch(
 route.get("/:latitude&:longitude");
 
 route.get(
-  "/dumpSpotByDistance/:ratio?",
+  "/byDistance/:radius?",
   verifyCategoryIsAcceptedMiddleware,
   verifyZipCodeMiddleware,
   validateToken,
