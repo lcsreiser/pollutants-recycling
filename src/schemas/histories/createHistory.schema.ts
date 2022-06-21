@@ -34,18 +34,6 @@ const serializedCreateHistorySchema = yup.object().shape({
             longitude: yup.number().required(),
             isDumpSpot: yup.bool().default(false).optional(),
         })
-    }).optional(),
-    receiver: yup.object().shape({
-        userId: yup.string().uuid().required(),
-        name: yup.string().required(),
-        email: yup.string().email().required(),
-        address: yup.object().shape({
-            zipCode: yup.string().required(),
-            street: yup.string().required(),
-            complement: yup.string().required(),
-            number: yup.number().required(),
-            isDumpSpot: yup.bool().required(),
-        }),
     }).optional()
 })
 

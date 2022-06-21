@@ -7,15 +7,14 @@ const validateDumpSpotOrReceiver = async (req: Request, res: Response, next: Nex
     const validated: Partial<History> = req.validated as Partial<History>;
 
     if (validated.dumpSpot) {
-        const dumpSpot = await dumpSpotRepository.findOne(validated.dumpSpot)
-
+        const dumpSpot = await dumpSpotRepository.findOne({dumpSpot_id: validated.dumpSpot})
         if (!dumpSpot) {
             throw new ErrorHandler(404, `DumpSpot ${validated.dumpSpot} not found!`)
         }
 
         validated.dumpSpot = dumpSpot;
     }else if (validated.receiver) {
-        const receiver = await userRepository.findOne(validated.receiver)
+        const receiver = await userRepository.findOne({userId: validated.receiver})
 
         if (!receiver) {
             throw new ErrorHandler(404, `Receiver user ${validated.receiver} not found!`)

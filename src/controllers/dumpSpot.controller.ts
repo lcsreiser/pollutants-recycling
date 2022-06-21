@@ -9,10 +9,7 @@ class DumpSpotController {
   };
 
   getDumpSpots = async (req: Request, res: Response) => {
-   
-    console.log("entrei no dumpcontroller")
     const dumpSpots = await dumpSpotService.retrieveAll(req);
-    console.log("dump result", dumpSpots)
     return res.status(200).json(dumpSpots);
   };
 

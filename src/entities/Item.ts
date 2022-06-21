@@ -21,7 +21,7 @@ export class Item {
     @ManyToOne(() => Category, (category) => category.items, {eager: true})
     category: Category;
 
-    @ManyToOne(() => User, (user) => user.items, {eager: true})
+    @ManyToOne(() => User, (user) => user.items)
     owner: User;
 
     @OneToOne(() => History , (history) => history.item)
