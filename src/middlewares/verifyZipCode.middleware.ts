@@ -8,17 +8,22 @@ const verifyZipCodeMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const zipCodeRegex = /^([\d]{8})$/; //XX.XXX-XXX | XXXXXXX
+  const zipCodeRegex = /^([\d]{8})$/; //XXXXXXX
 
   if (req.body.zipCode) {
     //valida com regex
     if (!zipCodeRegex.test(req.body.zipCode)) {
-     
       throw new ErrorHandler(
         400,
         "Incorrect zip code, must be in this format XXXXXXX, max 8 numbers"
       );
     }
+
+    if (
+      req.path === "/dumpSpotByDistance" ||
+      req.path === `/dumpSpotByDistance/${req.params["ratio"]}`
+    )
+      return dumpSpotController.getDumpSpotsByDistance(req, res);
 
     return dumpSpotController.getDumpSpots(req, res);
   }

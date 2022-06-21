@@ -32,10 +32,10 @@ export class Address {
   @Column()
   number: number;
 
-  @Column({type: "float"})
+  @Column({ type: "float" })
   latitude: number;
 
-  @Column({type: "float"})
+  @Column({ type: "float" })
   longitude: number;
 
   @Column({ default: false })

@@ -20,7 +20,6 @@ route.post(
   dumpSpotController.createController
 );
 
-
 route.get(
   "/dumpSpotFree",
   verifyCategoryIsAcceptedMiddleware,
@@ -37,6 +36,12 @@ route.patch(
 );
 route.get("/:latitude&:longitude");
 
+route.get(
+  "/dumpSpotByDistance/:ratio?",
+  verifyCategoryIsAcceptedMiddleware,
+  verifyZipCodeMiddleware,
+  validateToken,
+  dumpSpotController.getDumpSpotsByDistance
+);
+
 export default route;
-
-
