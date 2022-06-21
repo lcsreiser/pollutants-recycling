@@ -53,6 +53,18 @@ class Connection {
       await repository.query(`DELETE FROM ${entity.tableName}`);
     });
   };
+
+  query = async () => {
+    const connection = await this.dbConnection;
+    const entities = connection.entityMetadatas;
+
+    entities.forEach(async (entity) => {
+      const repository = connection.getRepository(entity.name);
+      await repository.query(`PRAGMA foreign_keys=OFF`);
+      await connection.synchronize();
+      await connection.query("PRAGMA foreign_keys=ON");
+    });
+  };
 }
 
 export { Connection, generateUser };
