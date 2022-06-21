@@ -1,4 +1,5 @@
 import { Request } from "express";
+import { User } from "../entities";
 import { ErrorHandler } from "../errors/appError";
 import { dumpSpotRepository, userRepository } from "../repositories";
 import historyRepository from "../repositories/history.repository";
@@ -21,6 +22,12 @@ class HistoryService {
         return await serializedCreateHistorySchema.validate( updatedHistory, {
             stripUnknown: true,
         })
+    }
+
+    get = async ({ decoded }: Request) => {
+        const user: User = await userRepository.findOne({userId: decoded.userId});
+
+        return user.histories;
     }
 }
 
