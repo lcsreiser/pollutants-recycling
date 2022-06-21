@@ -5,8 +5,12 @@ import verifyDumpSpotExists from "./verifyDumpSpotExists.middleware";
 import verifyUserExists from "./verifyUserExists.middleware";
 import verifyCategoryIsAcceptedMiddleware from "./verifyCategoryIsAccepted.middleware";
 import verifyZipCodeMiddleware from "./verifyZipCode.middleware";
+import verifyOwner from "./verifyOwner.middleware";
+import validateDumpSpotOrReceiver from "./validateDumpSpotOrReceiver.middleware";
 
 export {
+  verifyOwner,
+  validateDumpSpotOrReceiver,
   validateSchemaMiddleware,
   validateToken,
   verifyCategoryExists,

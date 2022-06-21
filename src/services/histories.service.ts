@@ -12,6 +12,16 @@ class HistoryService {
             stripUnknown: true,
         })
     }
+
+    update = async ({ params, body }: Request) => {
+        await historyRepository.update(params.history_id, {...body})
+        
+        const updatedHistory = await historyRepository.findOne({hisotry_id: params.hisotry_id});
+
+        return await serializedCreateHistorySchema.validate( updatedHistory, {
+            stripUnknown: true,
+        })
+    }
 }
 
 export default new HistoryService();
