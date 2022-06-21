@@ -15,16 +15,16 @@ class HistoryService {
             }
 
             return (validated as Partial<History>).dumpSpot = dumpSpot;
-        }
+        }else if ((validated as Partial<History>).receiver) {
+            const receiver = await userRepository.findOne((validated as Partial<History>).receiver)
 
-        if ((validated as Partial<History>).userCollector) {
-            const userCollector = await userRepository.findOne((validated as Partial<History>).userCollector)
-
-            if (!userCollector) {
-                throw new ErrorHandler(404, `User ${(validated as Partial<History>).userCollector} not found!`)
+            if (!receiver) {
+                throw new ErrorHandler(404, `Receiver user ${(validated as Partial<History>).receiver} not found!`)
             }
 
-            return (validated as Partial<History>).userCollector = userCollector;
+            return (validated as Partial<History>).receiver = receiver;
+        } else{
+            throw new ErrorHandler(400, "It is necessary a dumpSpot or a receiver user to create a new history!")
         }
 
         const newHistory = await historyRepository.save({ ...validated, provider: decoded });
@@ -36,6 +36,3 @@ class HistoryService {
 }
 
 export default new HistoryService();
-
-//caso a transacao ocorra com um outro usuario deve conter 'receiver'
-//no body, caso seja um dumpSpot a key sera 'dumpSpot'
