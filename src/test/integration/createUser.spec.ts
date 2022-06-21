@@ -35,23 +35,35 @@ describe("Create user router | Integration tests", () => {
       .post("/users/signup")
       .send({ ...user });
 
-    console.log(response);
+    // console.log(response);
+    // console.log(response.body);
 
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty("email");
-    expect(response.body.email).toStrictEqual(user.email);
+    expect(response.body.email).toEqual(user.email);
   });
 
   it("Return: Body error, missing password | Status code: 400", async () => {
-    const { password, ...user } = generateUser();
+    const { password, ...user } = {
+      name: "john",
+      email: "john@mail.com",
+      password: "123456",
+      address: {
+        zipCode: "88085435",
+        number: 300,
+        complement: "casa",
+      },
+    };
     const response = await supertest(app)
       .post("/users/signup")
       .send({ ...user });
 
+    console.log(response.body.message.error);
+
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message");
-    expect(response.body).toStrictEqual({
-      message: ["password is a required field"],
-    });
+    expect(response.body.message.error).toEqual([
+      "password is a required field",
+    ]);
   });
 });
