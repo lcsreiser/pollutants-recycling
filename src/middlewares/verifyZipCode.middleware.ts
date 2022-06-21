@@ -20,10 +20,11 @@ const verifyZipCodeMiddleware = async (
     }
 
     if (
-      req.path === "/dumpSpotByDistance" ||
-      req.path === `/dumpSpotByDistance/${req.params["ratio"]}`
-    )
+      req.path === "/byDistance" ||
+      req.path === `/byDistance/${req.params["radius"]}`
+    ) {
       return dumpSpotController.getDumpSpotsByDistance(req, res);
+    }
 
     return dumpSpotController.getDumpSpots(req, res);
   }

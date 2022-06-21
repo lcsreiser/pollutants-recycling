@@ -4,6 +4,7 @@ const zipCodeRegex = /^([\d]{8})$/; //XX.XXX-XXX | XXXXXXX
 
 const createDumpSpotSchema = yup.object().shape({
   name: yup.string().required(),
+  categories: yup.string().lowercase().required(),
   address: yup.object().shape({
     zipCode: yup
       .string()
@@ -21,6 +22,7 @@ const createDumpSpotSchema = yup.object().shape({
 const serializedCreateDumpSpotSchema = yup.object().shape({
   dumpSpot_id: yup.string().uuid().required(),
   name: yup.string().required(),
+  categories: yup.array().required(),
   address: yup.object().shape({
     zipCode: yup.string().required(),
     street: yup.string().required(),
@@ -33,4 +35,4 @@ const serializedCreateDumpSpotSchema = yup.object().shape({
   }),
 });
 
-export {createDumpSpotSchema, serializedCreateDumpSpotSchema}
+export { createDumpSpotSchema, serializedCreateDumpSpotSchema };

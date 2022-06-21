@@ -1,7 +1,11 @@
 import { Request } from "express";
-import { Address, DumpSpot } from "../entities";
+import { Address, Category, DumpSpot } from "../entities";
 import { ErrorHandler } from "../errors/appError";
-import { addressRepository, dumpSpotRepository } from "../repositories";
+import {
+  addressRepository,
+  categoryRepository,
+  dumpSpotRepository,
+} from "../repositories";
 import route from "../routes/dumpSpot.routes";
 import { serializedCreateDumpSpotSchema } from "../schemas";
 import { distanceMatrix } from "../utils/distanceMatrix";
@@ -35,11 +39,20 @@ class DumpSpotService {
     const address: Address = await addressRepository.save({
       ...(location as Address),
     });
+    const { categories } = validated as DumpSpot;
+
+    const category: Category = await categoryRepository.findOne({
+      name: categories,
+    });
+
+    if (!category) throw new ErrorHandler(400, "Category doesn't exists");
 
     const newDumpSpot: DumpSpot = await dumpSpotRepository.save({
       ...(validated as Partial<DumpSpot>),
       address,
+      categories: [category],
     });
+
     return await serializedCreateDumpSpotSchema.validate(newDumpSpot, {
       stripUnknown: true,
     });
@@ -90,7 +103,6 @@ class DumpSpotService {
     let destinationsPoints: IDestination[] = [];
     let distanceMatrixResponse: IDistanceMatrixResponse;
     let route: IRoute[] = [];
-
     if (body.zipCode) {
       geoLocation = await obtainLocation(body.zipCode);
       delete geoLocation.city;
@@ -121,8 +133,8 @@ class DumpSpotService {
       destinationsPoints
     );
 
-    if (params.ratio !== undefined) {
-      let ratioInMeters: number = Number(params.ratio) * 1000;
+    if (params.radius !== undefined) {
+      let ratioInMeters: number = Number(params.radius) * 1000;
       distanceMatrixResponse.destination_addresses.forEach((e, i) => {
         if (
           distanceMatrixResponse.rows[0]["elements"][i]["distance"]["value"] <=
