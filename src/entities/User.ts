@@ -27,7 +27,7 @@ export class User {
   @Column()
   password: string;
 
-  @OneToOne(() => Address, (address) => address.user, {eager: true})
+  @OneToOne(() => Address, (address) => address.user, { eager: true })
   @JoinColumn()
   address: Address;
 
