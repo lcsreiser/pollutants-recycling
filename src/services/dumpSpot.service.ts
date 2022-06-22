@@ -41,16 +41,23 @@ class DumpSpotService {
     });
     const { categories } = validated as DumpSpot;
 
-    const category: Category = await categoryRepository.findOne({
-      name: categories,
-    });
+    let category: Category[] = await Promise.all(
+      categories.map(async (e) => {
+        let cat: Category = await categoryRepository.findOne({
+          name: e,
+        });
+        if (cat === null) {
+          throw new ErrorHandler(400, `Category ${e} doesn't exists`);
+        }
 
-    if (!category) throw new ErrorHandler(400, "Category doesn't exists");
+        return cat;
+      })
+    );
 
     const newDumpSpot: DumpSpot = await dumpSpotRepository.save({
       ...(validated as Partial<DumpSpot>),
       address,
-      categories: [category],
+      categories: category,
     });
 
     return await serializedCreateDumpSpotSchema.validate(newDumpSpot, {
@@ -84,7 +91,41 @@ class DumpSpotService {
       )
     );
 
-    return dumpSpots;
+    if (body.categories) {
+      console.log("entrei");
+      let dumpSpotsByCategory: DumpSpot[][] = [];
+
+      const categories: Category = await categoryRepository.findOne({
+        name: body.categories[0],
+      });
+
+      if (!categories) throw new ErrorHandler(400, `Category doesn't exists`);
+
+      // const dumpSpotsByCategory: DumpSpot[][] = await Promise.all(
+      dumpSpots.forEach(async (e) => {
+        // console.log(e);
+
+        let t: DumpSpot[] = await dumpSpotRepository.teste(
+          categories.categoryId,
+          e.dumpSpot_id
+        );
+
+        // console.log("categories", categories);
+
+        console.log("t", t);
+
+        if (t.length !== 0) {
+          dumpSpotsByCategory.push(t);
+        }
+        console.log(dumpSpotsByCategory);
+      });
+      // );
+
+      console.log("dumpSpotsByCategory", dumpSpotsByCategory);
+      return dumpSpotsByCategory;
+    } else {
+      return dumpSpots;
+    }
   };
 
   update = async ({ params, body }: Request) => {

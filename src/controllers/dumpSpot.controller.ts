@@ -10,6 +10,7 @@ class DumpSpotController {
 
   getDumpSpots = async (req: Request, res: Response) => {
     const dumpSpots = await dumpSpotService.retrieveAll(req);
+    console.log("getDumpSpotsController", dumpSpots);
     return res.status(200).json(dumpSpots);
   };
 

@@ -27,7 +27,7 @@ export class DumpSpot {
   @JoinColumn()
   address: Address;
 
-  @ManyToMany(() => Category, (category) => category.dumpspots)
+  @ManyToMany(() => Category, (category) => category.dumpspots, { eager: true })
   @JoinTable()
   categories: Category[];
 }
