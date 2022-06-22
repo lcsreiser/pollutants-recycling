@@ -21,6 +21,4 @@ export class History {
     @ManyToOne(() => DumpSpot, (dumpSpot) => dumpSpot.histories)
     dumpSpot?: DumpSpot;
 
-    @ManyToOne(() => User, (user) => user.histories)
-    receiver?: User;
 } 

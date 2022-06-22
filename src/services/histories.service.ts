@@ -19,10 +19,20 @@ class HistoryService {
         return user.histories;
     }
 
-    getByDate = async ({ decoded, params }: Request) => {
+    getByDate = async ({ decoded, body }: Request) => {
         const user: User = await userRepository.findOne({ userId: decoded.userId });
 
-        const historiesByDate = user.histories.map(history => )
+        const historiesByDate = user.histories.map(history => {
+            const dateString: string = JSON.stringify(history.date);
+            const year: string = dateString.slice(1,5);
+            const month: string = dateString.slice(6,8); 
+            
+            if(body.months.includes(month) && body.years.includes(year)){
+                return history
+            }
+        })
+        
+        return historiesByDate;
     }
 }
 

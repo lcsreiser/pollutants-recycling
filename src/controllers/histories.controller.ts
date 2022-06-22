@@ -14,7 +14,11 @@ class HistoryController{
         return res.status(200).json(histories);
     }
 
-    getByDate = async (req: Request, res: Response) =>{}
+    getByDate = async (req: Request, res: Response) =>{
+        const histories= await HistoryService.getByDate(req);
+
+        return res.status(200).json(histories);
+    }
 }
 
 export default new HistoryController();

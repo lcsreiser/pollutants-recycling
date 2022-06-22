@@ -13,15 +13,7 @@ const validateDumpSpotOrReceiver = async (req: Request, res: Response, next: Nex
         }
 
         validated.dumpSpot = dumpSpot;
-    }else if (validated.receiver) {
-        const receiver = await userRepository.findOne({userId: validated.receiver})
-
-        if (!receiver) {
-            throw new ErrorHandler(404, `Receiver user ${validated.receiver} not found!`)
-        }
-
-        validated.receiver = receiver;
-    } else{
+    }else{
         throw new ErrorHandler(400, "It is necessary a dumpSpot or a receiver user to create a new history!")
     }
 

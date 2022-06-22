@@ -7,8 +7,10 @@ import verifyCategoryIsAcceptedMiddleware from "./verifyCategoryIsAccepted.middl
 import verifyZipCodeMiddleware from "./verifyZipCode.middleware";
 import verifyOwner from "./verifyOwner.middleware";
 import validateDumpSpotOrReceiver from "./validateDumpSpotOrReceiver.middleware";
+import validateDate from "./validateDate.middleware";
 
 export {
+  validateDate,
   verifyOwner,
   validateDumpSpotOrReceiver,
   validateSchemaMiddleware,
