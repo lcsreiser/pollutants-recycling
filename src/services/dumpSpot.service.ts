@@ -93,7 +93,7 @@ class DumpSpotService {
 
     if (body.categories) {
       console.log("entrei");
-      let dumpSpotsByCategory: DumpSpot[][] = [];
+      let dumpSpotsByCategory: DumpSpot[] = [];
 
       const categories: Category = await categoryRepository.findOne({
         name: body.categories[0],
@@ -101,27 +101,25 @@ class DumpSpotService {
 
       if (!categories) throw new ErrorHandler(400, `Category doesn't exists`);
 
-      // const dumpSpotsByCategory: DumpSpot[][] = await Promise.all(
-      dumpSpots.forEach(async (e) => {
-        // console.log(e);
+      await Promise.all(
+        dumpSpots.map(async (e, i) => {
+          let t: DumpSpot = await dumpSpotRepository.teste(
+            categories.categoryId,
+            e.dumpSpot_id,
+            e.address.addressId
+          );
 
-        let t: DumpSpot[] = await dumpSpotRepository.teste(
-          categories.categoryId,
-          e.dumpSpot_id
+          if (t) {
+            console.log(`t ${i}`, t.address);
+            dumpSpotsByCategory.push(t);
+          }
+        })
+      );
+      if (dumpSpotsByCategory.length === 0)
+        throw new ErrorHandler(
+          400,
+          "DumpSpot not localized with informed category"
         );
-
-        // console.log("categories", categories);
-
-        console.log("t", t);
-
-        if (t.length !== 0) {
-          dumpSpotsByCategory.push(t);
-        }
-        console.log(dumpSpotsByCategory);
-      });
-      // );
-
-      console.log("dumpSpotsByCategory", dumpSpotsByCategory);
       return dumpSpotsByCategory;
     } else {
       return dumpSpots;

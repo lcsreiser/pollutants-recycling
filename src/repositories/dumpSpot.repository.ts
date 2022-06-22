@@ -8,7 +8,11 @@ interface IDumpSpotRepo {
   all: (payload: object) => Promise<DumpSpot[]>;
   update: (uuid: string, payload: object) => Promise<UpdateResult>;
   delete: (id: string) => Promise<DeleteResult>;
-  teste: (catId: string, dumpId: string) => Promise<DumpSpot[]>;
+  teste: (
+    catId: string,
+    dumpId: string,
+    addressId: string
+  ) => Promise<DumpSpot>;
 }
 
 class DumpSpotRepository implements IDumpSpotRepo {
@@ -31,13 +35,17 @@ class DumpSpotRepository implements IDumpSpotRepo {
   delete = async (id: string): Promise<DeleteResult> =>
     await this.repo.delete(id);
 
-  teste = async (catId: string, dumpId: string) =>
+  teste = async (catId: string, dumpId: string, addressId: string) =>
     this.repo
       .createQueryBuilder("dumpSpots")
-      .leftJoin("dumpSpots.categories", "category")
+      .leftJoinAndSelect("dumpSpots.categories", "category")
+      .leftJoinAndSelect("dumpSpots.address", "address")
       .where("category.categoryId = :catId", { catId: catId })
       .andWhere("dumpSpots.dumpSpot_id = :dumpId", { dumpId: dumpId })
-      .getMany();
+      .andWhere("dumpSpots.addressAddressId = :addressId", {
+        addressId: addressId,
+      })
+      .getOne();
 }
 
 export default new DumpSpotRepository();
