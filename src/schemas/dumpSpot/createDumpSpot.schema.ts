@@ -1,10 +1,10 @@
 import * as yup from "yup";
 
-const zipCodeRegex = /^([\d]{8})$/; //XX.XXX-XXX | XXXXXXX
+const zipCodeRegex = /^([\d]{8})$/; //XXXXXXX
 
 const createDumpSpotSchema = yup.object().shape({
   name: yup.string().required(),
-  categories: yup.string().lowercase().required(),
+  categories: yup.array(yup.string().lowercase()).required(),
   address: yup.object().shape({
     zipCode: yup
       .string()
@@ -22,7 +22,13 @@ const createDumpSpotSchema = yup.object().shape({
 const serializedCreateDumpSpotSchema = yup.object().shape({
   dumpSpot_id: yup.string().uuid().required(),
   name: yup.string().required(),
-  categories: yup.array().required(),
+  categories: yup
+    .array(
+      yup.object().shape({
+        name: yup.string(),
+      })
+    )
+    .required(),
   address: yup.object().shape({
     zipCode: yup.string().required(),
     street: yup.string().required(),
