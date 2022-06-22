@@ -1,5 +1,7 @@
 # **Pollutants Recycling**
 
+<h4>Documentação no Swagger: /api-documentation, com as rotas de criação de usuários, categorias, itens e pontos de coleta</h4>
+
 </br>
 
 ## Rotas
@@ -51,7 +53,7 @@
 
 <h3> Login de usuários</h3>
 
-`POST /login - FORMATO DA REQUISIÇÃO `
+`POST /users/signin - FORMATO DA REQUISIÇÃO `
 
 ```json
 {
@@ -67,62 +69,6 @@
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU0NWFiMTBkLTJmZjUtNDRmYy1hMzM0LWQ3ZGZkMzk4OTJiYiIsImlhdCI6MTY1Mzc2MDMzNywiZXhwIjoxNjUzNzYzOTM3fQ.ECH1rK8WvGkzY2ghEP5TJW4ZD8cOjeGfyvgSwn9ZAfs"
-}
-```
-
-</br></br>
-
-<h3>Atualização de usuários</h3>
-
-`PATCH /users/:id - FORMATO DA REQUISIÇÃO `
-
-**Bearer Token Required**
-
-```json
-{
-  "name": "José Carlos",
-  "number": 732,
-  "complement": "Apt 42"
-}
-```
-
-> Em caso de sucesso, a resposta será:
-
-`PATCH /users/:id - FORMATO DA RESPOSTA - STATUS 200`
-
-```json
-{
-  "userId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-  "name": "José Carlos",
-  "email": "josé@email.com",
-  "address":{
-    "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "zipCode": "11020325",
-    "street": "AV. Afonso Pena",
-    "number": 732,
-    "complement": "Apt 42",
-    "city": "Santos",
-    "state": "SP",
-    "isDumpSpot": false
-  }
-}
-```
-
-</br></br>
-
-<h3>Remoção de usuários</h3>
-
-`DELETE /users/:id - NO BODY `
-
-**Bearer Token Required**
-
-> Em caso de sucesso, a resposta será:
-
-`DELETE /users/:id - FORMATO DA RESPOSTA - STATUS 204`
-
-```json
-{
-  "message": "user successfully deleted""
 }
 ```
 
@@ -159,7 +105,7 @@
 
 </br></br>
 
-<h3>Busca de todoas as categorias</h3>
+<h3>Busca de todas as categorias</h3>
 
 `GET /categories - NO BODY `
 
@@ -257,7 +203,7 @@
 {
   "name": "Garrafa de óleo",
   "description": "Garrafa de óleo usado",
-  "quantity": "3 Litros",
+  "quantity": 3,
   "category": "Óleo" 
 }
 ```
@@ -375,12 +321,12 @@
 
 ```json
 {
-  "name": "ONG NatureLive",
-  "zipCode": "11020004",
+  "name": "Ong Nature",
 	"address": {
-		"number": 726,
-  	"complement": "Apt 31",
-    "isDumpSpot": true
+		"zipCode": "09210300",
+		"number": 359,
+  	"complement": "Casa 5",
+		"isDumpSpot": true
 	} 
 }
 ```
