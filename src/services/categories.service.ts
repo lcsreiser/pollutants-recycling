@@ -1,11 +1,18 @@
 import { Request } from "express"
 import { Category } from "../entities/Category"
+import { ErrorHandler } from "../errors/appError"
 import { categoryRepository } from "../repositories"
 import { createCategorySchema, getCategoriesSchema, serializedCategorySchema } from "../schemas"
 
 class CategoriesService {
 
     createCategory = async ({ validated }: Request) => {
+        validated = validated as Category
+
+        if ((await categoryRepository.all()).map(item => item.name.toLowerCase()).includes(validated.name.toLowerCase())){
+            throw new ErrorHandler(409, `${validated.name} already exists`)
+        }
+
         const category: Category = await categoryRepository.save({
             ...(validated as Category)
         })
