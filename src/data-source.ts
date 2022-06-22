@@ -16,7 +16,7 @@ const DevEnv = new DataSource({
 const TestEnv = new DataSource({
   type: "sqlite",
   database: "../dbTest.sqlite",
-  synchronize: false,
+  synchronize: true,
   entities: [path.join(__dirname, "./entities/**/*.{js,ts}")],
 });
 

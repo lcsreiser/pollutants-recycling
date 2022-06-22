@@ -1,9 +1,6 @@
 import supertest from "supertest";
-import { Connection, generateUser } from "..";
+import { Connection } from "..";
 import app from "../../app";
-import { Address, User } from "../../entities";
-import { userService } from "../../services";
-import AppDataSource from "../../data-source";
 
 describe("Create user router | Integration tests", () => {
   const dbConnection = new Connection();
@@ -31,12 +28,11 @@ describe("Create user router | Integration tests", () => {
       },
     };
 
+    await dbConnection.queryBefore();
+
     const response = await supertest(app)
       .post("/users/signup")
       .send({ ...user });
-
-    // console.log(response);
-    // console.log(response.body);
 
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty("email");
@@ -54,11 +50,12 @@ describe("Create user router | Integration tests", () => {
         complement: "casa",
       },
     };
+
+    await dbConnection.queryBefore();
+
     const response = await supertest(app)
       .post("/users/signup")
       .send({ ...user });
-
-    console.log(response.body.message.error);
 
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message");

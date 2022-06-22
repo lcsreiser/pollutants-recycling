@@ -1,23 +1,8 @@
 import AppDataSource from "../data-source";
-import { faker } from "@faker-js/faker";
 import { existsSync } from "fs";
 import path from "path";
 import { unlink } from "fs/promises";
-import { Address, User } from "../entities";
 import { DataSource } from "typeorm";
-
-const generateUser = (): Partial<User> => {
-  const name = faker.name.firstName().toLowerCase();
-  const email = faker.internet.email(name).toLowerCase();
-  const password = faker.datatype.string(10);
-  const address = {
-    zipCode: faker.address.zipCode("########"),
-    complement: "casa",
-    number: faker.address.buildingNumber(),
-  };
-
-  return { email, password };
-};
 
 class Connection {
   dbPath: string;
@@ -54,17 +39,17 @@ class Connection {
     });
   };
 
-  query = async () => {
+  queryBefore = async () => {
     const connection = await this.dbConnection;
-    const entities = connection.entityMetadatas;
 
-    entities.forEach(async (entity) => {
-      const repository = connection.getRepository(entity.name);
-      await repository.query(`PRAGMA foreign_keys=OFF`);
-      await connection.synchronize();
-      await connection.query("PRAGMA foreign_keys=ON");
-    });
+    await connection.query(`PRAGMA foreign_keys=OFF`);
+  };
+
+  queryAfter = async () => {
+    const connection = await this.dbConnection;
+
+    await connection.query("PRAGMA foreign_keys=ON");
   };
 }
 
-export { Connection, generateUser };
+export { Connection };
