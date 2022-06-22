@@ -1,7 +1,7 @@
 import * as yup from "yup"
 
 const createCategorySchema = yup.object().shape({
-    name: yup.string().required(),
+    name: yup.string().lowercase().required(),
     unit: yup.string().required(),
     description: yup.string().required(),
 })

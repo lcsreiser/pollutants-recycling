@@ -36,15 +36,14 @@ interface IRoute {
 }
 class DumpSpotService {
   create = async ({ validated, location }: Request) => {
+    validated = validated as DumpSpot;
+
     if (
       (await dumpSpotRepository.all())
         .map((item) => item.name)
-        .includes((validated as Category).name)
+        .includes(validated.name)
     ) {
-      throw new ErrorHandler(
-        409,
-        `${(validated as Category).name} already exists`
-      );
+      throw new ErrorHandler(409, `${validated.name} already exists`);
     }
 
     const address: Address = await addressRepository.save({
