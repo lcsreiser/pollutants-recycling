@@ -31,10 +31,10 @@ export class User {
   @JoinColumn()
   address: Address;
 
-  @OneToMany(() => Item, (item) => item.owner)
+  @OneToMany(() => Item, (item) => item.owner, {eager: true})
   items: Item[];
 
-  @OneToMany(() => History, (history) => history.provider)
+  @OneToMany(() => History, (history) => history.provider, {eager: true})
   histories: History[];
 
   comparePwd = async (pwdString: string): Promise<boolean> => {

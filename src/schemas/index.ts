@@ -29,7 +29,14 @@ import {
   serializedAdressSchema,
 } from "./adress/adress.schema";
 
+import {
+   createHistorySchema,
+   serializedCreateHistorySchema 
+} from "./histories/createHistory.schema";
+
 export {
+  createHistorySchema,
+  serializedCreateHistorySchema,
   createUserSchema,
   serializedCreateDumpSpotSchema,
   createDumpSpotSchema,
