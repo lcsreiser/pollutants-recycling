@@ -5,6 +5,7 @@ import verifyDumpSpotExists from "./verifyDumpSpotExists.middleware";
 import verifyUserExists from "./verifyUserExists.middleware";
 import verifyCategoryIsAcceptedMiddleware from "./verifyCategoryIsAccepted.middleware";
 import verifyZipCodeMiddleware from "./verifyZipCode.middleware";
+import { obtaintLocationMiddleware } from "./obtainLocation.middleware";
 
 export {
   validateSchemaMiddleware,
@@ -14,4 +15,5 @@ export {
   verifyUserExists,
   verifyCategoryIsAcceptedMiddleware,
   verifyZipCodeMiddleware,
+  obtaintLocationMiddleware,
 };

@@ -13,7 +13,7 @@
     "migration:create": "typeorm-ts-node-commonjs migration:create",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/data-source.ts",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/data-source.ts",
-    "test": "jest"
+    "test": "jest --detectOpenHandles --passWithNoTests"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.2.0",

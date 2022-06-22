@@ -1,18 +1,8 @@
 import AppDataSource from "../data-source";
-import { faker } from "@faker-js/faker";
 import { existsSync } from "fs";
 import path from "path";
 import { unlink } from "fs/promises";
-import { User } from "../entities";
 import { DataSource } from "typeorm";
-
-const generateUser = (): Partial<User> => {
-  const firstName = faker.name.firstName().toLowerCase();
-  const email = faker.internet.email(firstName).toLowerCase();
-  const password = faker.datatype.string(10);
-
-  return { email, password };
-};
 
 class Connection {
   dbPath: string;
@@ -48,6 +38,18 @@ class Connection {
       await repository.query(`DELETE FROM ${entity.tableName}`);
     });
   };
+
+  queryBefore = async () => {
+    const connection = await this.dbConnection;
+
+    await connection.query(`PRAGMA foreign_keys=OFF`);
+  };
+
+  queryAfter = async () => {
+    const connection = await this.dbConnection;
+
+    await connection.query("PRAGMA foreign_keys=ON");
+  };
 }
 
-export { Connection, generateUser };
+export { Connection };
