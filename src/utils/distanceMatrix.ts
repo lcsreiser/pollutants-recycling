@@ -27,13 +27,8 @@ const distanceMatrix = async (
   let data: IDistanceMatrixResponse;
 
   destination.forEach((e, i) => {
-    if (i % 2 === 0) {
-      destinationString += e.lat + "%2C" + e.lng;
-    } else {
-      destinationString += "%7C" + e.lat + "%2C" + e.lng;
-    }
+    destinationString += e.lat + "%2C" + e.lng + "%7C";
   });
-
   await googleApi
     .get(
       `/distancematrix/json?key=${process.env.GOOGLE_API_KEY}
@@ -41,12 +36,18 @@ const distanceMatrix = async (
       &origins=${origin.lat}, ${origin.lng}`
     )
     .then((response) => {
+      if (
+        response.data.destination_addresses[
+          response.data.destination_addresses.length - 1
+        ] === ""
+      ) {
+        response.data.destination_addresses.pop();
+      }
       (data as IDistanceMatrixResponse) = Object.assign({}, response.data);
     })
     .catch((err) => {
       console.error("DistanceMatrix function", err);
     });
-
   return data;
 };
 
