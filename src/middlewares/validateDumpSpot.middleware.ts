@@ -3,7 +3,7 @@ import { History } from "../entities/History";
 import { ErrorHandler } from "../errors/appError";
 import { dumpSpotRepository, userRepository } from "../repositories";
 
-const validateDumpSpotOrReceiver = async (req: Request, res: Response, next: NextFunction) =>{
+const validateDumpSpot = async (req: Request, res: Response, next: NextFunction) =>{
     const validated: Partial<History> = req.validated as Partial<History>;
 
     if (validated.dumpSpot) {
@@ -20,4 +20,4 @@ const validateDumpSpotOrReceiver = async (req: Request, res: Response, next: Nex
     return next()
 }
 
-export default validateDumpSpotOrReceiver;
+export default validateDumpSpot;

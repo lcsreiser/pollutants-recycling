@@ -6,13 +6,13 @@ import verifyUserExists from "./verifyUserExists.middleware";
 import verifyCategoryIsAcceptedMiddleware from "./verifyCategoryIsAccepted.middleware";
 import verifyZipCodeMiddleware from "./verifyZipCode.middleware";
 import verifyOwner from "./verifyOwner.middleware";
-import validateDumpSpotOrReceiver from "./validateDumpSpotOrReceiver.middleware";
+import validateDumpSpot from "./validateDumpSpot.middleware";
 import validateDate from "./validateDate.middleware";
 
 export {
   validateDate,
   verifyOwner,
-  validateDumpSpotOrReceiver,
+  validateDumpSpot,
   validateSchemaMiddleware,
   validateToken,
   verifyCategoryExists,
