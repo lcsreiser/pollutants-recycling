@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, response } from "express";
 import { DumpSpot } from "../entities";
 import { User } from "../entities/User";
+import { ErrorHandler } from "../errors/appError";
 import { googleApi } from "../utils/googleApi";
 
 const obtaintLocationMiddleware = async (
@@ -21,6 +22,7 @@ const obtaintLocationMiddleware = async (
       };
     })
     .catch((err) => {
+      throw new ErrorHandler(400, "zipCode not exists")
       console.log(err);
     });
 

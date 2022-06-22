@@ -22,7 +22,7 @@ class DumpSpotRepository implements IDumpSpotRepo {
   findOne = async (payload: object) =>
     await this.repo.findOneBy({ ...payload });
 
-  all = async (payload: string) => await this.repo.find({ where: {} });
+  all = async () => await this.repo.find();
 
   update = async (uuid: string, payload: object) =>
     await this.repo.update(uuid, { ...payload });
