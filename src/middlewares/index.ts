@@ -8,6 +8,7 @@ import verifyZipCodeMiddleware from "./verifyZipCode.middleware";
 import verifyOwner from "./verifyOwner.middleware";
 import validateDumpSpot from "./validateDumpSpot.middleware";
 import validateDate from "./validateDate.middleware";
+import { obtaintLocationMiddleware } from "./obtainLocation.middleware";
 
 export {
   validateDate,
@@ -20,4 +21,5 @@ export {
   verifyUserExists,
   verifyCategoryIsAcceptedMiddleware,
   verifyZipCodeMiddleware,
+  obtaintLocationMiddleware,
 };

@@ -7,6 +7,7 @@ interface IAdressRepo {
   findBy: (payload: object) => Promise<Address[]>;
   update: (uuid: string, payload: object) => Promise<UpdateResult>;
   retrieve: (payload: string) => Promise<Address[]>;
+  retrieveAllDumpSpots: () => Promise<Address[]>;
 }
 
 class AddressRepository implements IAdressRepo {
@@ -25,6 +26,9 @@ class AddressRepository implements IAdressRepo {
 
   retrieve = async (city: string) =>
     await this.repo.find({ where: { isDumpSpot: true, city: city } });
+
+  retrieveAllDumpSpots = async () =>
+    await this.repo.find({ where: { isDumpSpot: true } });
 }
 
 export default new AddressRepository();

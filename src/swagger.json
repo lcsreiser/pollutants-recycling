@@ -1,0 +1,366 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "S.P.O.T - Api",
+    "description": "Api para controle de reciclagem.",
+    "termsOfService": "http://localhost:3000/terms",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Api de teste"
+    }
+  ],
+  "paths": {
+    "/users/signup": {
+      "post": {
+        "summary": "Cadastro de Usuários",
+        "description": "Rota responsável por cadastrar os usuários.",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Thiago",
+                    "email": "thiago@kenzie.com",
+                    "password": "1234",	
+                    "address": {
+                      "zipCode": "11020004",
+                      "number": 726,
+                      "complement": "apt 31"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Error: Conflict"
+          }
+        }
+      }
+    },
+    "/users/signin": {
+      "post": {
+        "summary": "Login de Usuário",
+        "description": "Rota responsável realizar login do usuário, retornando o token.",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "student": {
+                  "value": {
+                    "email": "thiago@kenzie.com",
+                    "password": "1234"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Invalid credentials."
+          }
+        }
+      }
+    },
+    "/categories": {
+      "post": {
+        "tags": ["Categories"],
+        "description": "Essa é a rota de criação de uma categoria",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Categorie"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Óleo",
+                    "unit": "Litros",
+                    "description": "Óleo de cozinha usado"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Categorie already exists."
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Categorie"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/óleo": {
+      "get": {
+        "tags": ["Categories"],
+        "description": "Essa é a rota de busca de uma categoria, no caso o óleo",
+        "responses": {
+          "200": {
+            "description": "Ok.",
+            "content": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Categorie"
+              }
+            }
+          },
+          "404": {
+            "description": "Categorie not found"
+          }
+        }
+      }
+    },
+    "/items": {
+      "post": {
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["Items"],
+        "description": "Essa é a rota de criação de um item",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Items"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Garrafa de óleo",
+                    "description": "Garrafa de óleo usado",
+                    "quantity": 3,
+                    "category": "Óleo" 
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Error: Conflict"
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/Items"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dumpSpot": {
+      "post": {
+        "security":[
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["DumpSpots"],
+        "description": "Essa é a rota de criação de um ponto de coleta",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DumpSpot"
+              },
+              "examples": {
+                "user": {
+                  "values": {
+                    "name": "Ong Nature",
+                    "address": {
+                      "zipCode": "09210300",
+                      "number": 359,
+                      "complement": "Casa 5",
+                      "isDumpSpot": true
+                    } 
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Error: Conflict"
+          },
+          "201": {
+            "description": "Created.",
+            "content": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/DumpSpot"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "zipCode": {
+                "type": "string"
+              },
+              "number": {
+                "type": "integer"
+              },
+              "complement": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Categorie": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "descrption": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        }
+      },
+      "DumpSpot": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "object",
+            "properties": {
+              "zipCode": {
+                "type": "string"
+              },
+              "number": {
+                "type": "string"
+              },
+              "complement": {
+                "type": "string"
+              },
+              "isDumpSpot": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

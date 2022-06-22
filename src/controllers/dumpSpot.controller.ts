@@ -18,6 +18,12 @@ class DumpSpotController {
 
     return res.status(200).json(updatedDumpSpot);
   };
+
+  getDumpSpotsByDistance = async (req: Request, res: Response) => {
+    const dumpSpots = await dumpSpotService.retrieveByDistance(req);
+
+    return res.status(200).json(dumpSpots);
+  };
 }
 
 export default new DumpSpotController();
