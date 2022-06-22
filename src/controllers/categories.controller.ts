@@ -36,7 +36,7 @@ class CategoriesController {
 
         categoryToDelete === null ?
         res.status(404).json({"error": "Category not found"}) :
-        res.status(200).json("Succefully deleted")
+        res.status(202).json("Succefully deleted")
     }
 }
 

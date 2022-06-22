@@ -7,15 +7,11 @@ import validateSchemaMiddleware from "./validateSchema.middleware";
 
 dotenv.config();
 
-const validateToken = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const validateToken = (req: Request, _: Response, next: NextFunction) => {
   const token: string = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    res.status(400).json({ message: "Missing authorization token." });
+    throw new ErrorHandler(400, "Missing authorization token.");
   }
 
   return verify(

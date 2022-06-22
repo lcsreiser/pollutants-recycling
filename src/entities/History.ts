@@ -1,5 +1,4 @@
 import { CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Category } from "./Category";
 import { DumpSpot } from "./DumpSpot";
 import { Item } from "./Item";
 import { User } from "./User";
@@ -14,7 +13,7 @@ export class History {
 
     @OneToOne(()=>Item, (item)=> item.histories)
     @JoinColumn()
-    item: string;
+    item: Item;
 
     @ManyToOne(() => User, (user) => user.histories)
     provider: User;
@@ -22,6 +21,4 @@ export class History {
     @ManyToOne(() => DumpSpot, (dumpSpot) => dumpSpot.histories)
     dumpSpot?: DumpSpot;
 
-    @ManyToOne(() => User, (user) => user.histories)
-    userCollector?: DumpSpot;
-}
+} 

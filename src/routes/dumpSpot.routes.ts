@@ -21,18 +21,11 @@ route.post(
 );
 
 route.get(
-  "/dumpSpot",
-  validateToken,
-  verifyDumpSpotExists,
-  dumpSpotController.getDumpSpotsById
-);
-
-route.get(
-  "/dumpSpotFree",
+  "/free",
   verifyCategoryIsAcceptedMiddleware,
   verifyZipCodeMiddleware,
   validateToken,
-  dumpSpotController.getDumpSpotsById
+  dumpSpotController.getDumpSpots
 );
 
 route.patch(
@@ -43,6 +36,12 @@ route.patch(
 );
 route.get("/:latitude&:longitude");
 
+route.get(
+  "/byDistance/:radius?",
+  verifyCategoryIsAcceptedMiddleware,
+  verifyZipCodeMiddleware,
+  validateToken,
+  dumpSpotController.getDumpSpotsByDistance
+);
+
 export default route;
-
-

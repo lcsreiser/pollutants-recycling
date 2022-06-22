@@ -1,24 +1,33 @@
-import { Column, Entity, JoinColumn, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Address } from "./Address";
 import { Category } from "./Category";
 import { History } from "./History";
 
-
 @Entity("dumpSpots")
-export class  DumpSpot {
-    @PrimaryGeneratedColumn("uuid")
-    dumpSpot_id?: string;
+export class DumpSpot {
+  @PrimaryGeneratedColumn("uuid")
+  dumpSpot_id?: string;
 
-    @Column({ unique: true })
-    name: string;
+  @Column({ unique: true })
+  name: string;
 
-    @OneToMany(() => History, (history) => history.dumpSpot)
-    histories: History[];
- 
-    @OneToOne(() => Address, (address)=> address)
-    @JoinColumn()
-    address: Address;
+  @OneToMany(() => History, (history) => history.dumpSpot)
+  histories: History[];
 
-    @ManyToMany(() => Category, (category) => category.dumpspots)
-    categories: Category[];
+  @OneToOne(() => Address, (address) => address, { eager: true })
+  @JoinColumn()
+  address: Address;
+
+  @ManyToMany(() => Category, (category) => category.dumpspots, { eager: true })
+  @JoinTable()
+  categories: Category[];
 }

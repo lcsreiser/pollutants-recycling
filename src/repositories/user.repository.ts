@@ -1,11 +1,12 @@
 import { Repository } from "typeorm";
-import { AppDataSource } from "../data-source";
+import AppDataSource from "../data-source";
 import { User } from "../entities/User";
 
 interface IUserRepo {
   save: (user: Partial<User>) => Promise<User>;
   all: () => Promise<User[]>;
   findOne: (payload: object) => Promise<User>;
+
 }
 
 class UserRepo implements IUserRepo {

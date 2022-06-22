@@ -18,7 +18,7 @@ export class Item {
     @Column()
     quantity: number;
 
-    @ManyToOne(() => Category, (category) => category.items)
+    @ManyToOne(() => Category, (category) => category.items, {eager: true})
     category: Category;
 
     @ManyToOne(() => User, (user) => user.items)

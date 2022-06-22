@@ -8,9 +8,9 @@ class DumpSpotController {
     return res.status(201).json(newDumpSpot);
   };
 
-  getDumpSpotsById = async (req: Request, res: Response) => {
+  getDumpSpots = async (req: Request, res: Response) => {
     const dumpSpots = await dumpSpotService.retrieveAll(req);
-
+    console.log("getDumpSpotsController", dumpSpots);
     return res.status(200).json(dumpSpots);
   };
 
@@ -18,6 +18,12 @@ class DumpSpotController {
     const updatedDumpSpot = await dumpSpotService.update(req);
 
     return res.status(200).json(updatedDumpSpot);
+  };
+
+  getDumpSpotsByDistance = async (req: Request, res: Response) => {
+    const dumpSpots = await dumpSpotService.retrieveByDistance(req);
+
+    return res.status(200).json(dumpSpots);
   };
 }
 

@@ -5,8 +5,15 @@ import verifyDumpSpotExists from "./verifyDumpSpotExists.middleware";
 import verifyUserExists from "./verifyUserExists.middleware";
 import verifyCategoryIsAcceptedMiddleware from "./verifyCategoryIsAccepted.middleware";
 import verifyZipCodeMiddleware from "./verifyZipCode.middleware";
+import verifyOwner from "./verifyOwner.middleware";
+import validateDumpSpot from "./validateDumpSpot.middleware";
+import validateDate from "./validateDate.middleware";
+import { obtaintLocationMiddleware } from "./obtainLocation.middleware";
 
 export {
+  validateDate,
+  verifyOwner,
+  validateDumpSpot,
   validateSchemaMiddleware,
   validateToken,
   verifyCategoryExists,
@@ -14,4 +21,5 @@ export {
   verifyUserExists,
   verifyCategoryIsAcceptedMiddleware,
   verifyZipCodeMiddleware,
+  obtaintLocationMiddleware,
 };

@@ -1,7 +1,6 @@
 import "express-async-errors";
 import { NextFunction, Request, Response } from "express";
 import { ErrorHandler } from "../errors/appError";
-import validateSchemaMiddleware from "./validateSchema.middleware";
 import dumpSpotController from "../controllers/dumpSpot.controller";
 
 const verifyZipCodeMiddleware = async (
@@ -9,7 +8,7 @@ const verifyZipCodeMiddleware = async (
   res: Response,
   next: NextFunction
 ) => {
-  const zipCodeRegex = /^([\d]{8})$/; //XX.XXX-XXX | XXXXXXX
+  const zipCodeRegex = /^([\d]{8})$/; //XXXXXXX
 
   if (req.body.zipCode) {
     //valida com regex
@@ -20,7 +19,14 @@ const verifyZipCodeMiddleware = async (
       );
     }
 
-    return dumpSpotController.getDumpSpotsById;
+    if (
+      req.path === "/byDistance" ||
+      req.path === `/byDistance/${req.params["radius"]}`
+    ) {
+      return dumpSpotController.getDumpSpotsByDistance(req, res);
+    }
+
+    return dumpSpotController.getDumpSpots(req, res);
   }
 
   return next();

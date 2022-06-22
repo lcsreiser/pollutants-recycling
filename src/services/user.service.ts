@@ -18,7 +18,6 @@ interface ILogin {
 class UserService {
   createUser = async ({
     validated,
-    decoded,
     location,
   }: Request): Promise<AssertsShape<any>> => {
     (validated as User).password = await hash((validated as User).password, 10);
