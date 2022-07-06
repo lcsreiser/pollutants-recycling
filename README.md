@@ -1,4 +1,4 @@
-# **Pollutants Recycling**
+# **S.P.O.T**
 
 <h4>Documentação no Swagger: /api-documentation, com as rotas de criação de usuários, categorias, itens e pontos de coleta</h4>
 
@@ -96,8 +96,7 @@
 
 ```json
 {
-  "categoryId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-  "name": "Óleo",
+  "name": "óleo",
   "unit": "Litros",
   "description": "Óleo de cozinha usado",
 }
@@ -214,16 +213,18 @@
 
 ```json
 {
-  "itemId": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-  "name": "Garrafa de óleo",
-  "description": "Garrafa de óleo usado",
-  "quantity": "3 Litros",
-  "category": {
-    "id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "Óleo",
-    "unit": "Litros",
-    "description": "Óleo de cozinha usado",
-    } 
+	"owner": {
+		"email": "josé@kenzie.com",
+		"name": "José",
+		"userId": "955f7010-e2f0-4cc6-b50c-3d802cd751c3"
+	},
+	"category": {
+		"name": "óleo",
+		"categoryId": "091ac44a-27c4-4e26-967b-9dcf08b4d90f"
+	},
+	"description": "Garrafa de óleo usado",
+	"name": "Garrafa de óleo",
+	"itemId": "1b758975-13d5-4bb4-93fe-a23483296c09"
 }
 ```
 
@@ -321,13 +322,14 @@
 
 ```json
 {
-  "name": "Ong Nature",
+	"name": "Ong Nature",
+	"categories": "óleo",
 	"address": {
 		"zipCode": "09210300",
 		"number": 359,
-  	"complement": "Casa 5",
+		"complement": "Casa 5",
 		"isDumpSpot": true
-	} 
+	}
 }
 ```
 
@@ -337,82 +339,158 @@
 
 ```json
 {
-  "dumpSpot_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-  "name": "ONG NatureLive",
-  "address":{
-    "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "zipCode": "11020004",
-    "street": "AV. Afonso Pena",
-    "number": 736,
-    "complement": "Apt 31",
-    "latitude": -23.976815351036432,
-    "longitude": -46.297928631145886,
-    "isDumpSpot": true
-  }
+	"address": {
+		"isDumpSpot": true,
+		"longitude": -46.529671,
+		"latitude": -23.6369123,
+		"number": 359,
+		"complement": "Casa 5",
+		"city": "Santo André",
+		"street": "Avenida Estados Unidos",
+		"zipCode": "09210300"
+	},
+	"categories": [
+		{
+			"categoryId": "091ac44a-27c4-4e26-967b-9dcf08b4d90f",
+			"name": "óleo",
+			"unit": "Litros",
+			"description": "Óleo usado"
+		}
+	],
+	"name": "Ong Nature",
+	"dumpSpot_id": "1b83215d-b2bf-4891-9eb0-f02d3f5bb0bd"
 }
 ```
 </br></br>
 
-<h3>Busca de um ponto de coleta</h3>
+<h3>Busca de um ponto de coleta pelo cep</h3>
 
-`GET /dumpSpot/:dumpSpot_id - NO BODY `
-
-**Bearer Token Required**
-
-> Em caso de sucesso, a resposta será:
-
-`GET /dumpSpot/:dumpSpot_id - FORMATO DA RESPOSTA - STATUS 200`
+`GET /dumpSpot/free - NO BODY `
 
 ```json
 {
-    "dumpSpot_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "ONG NatureLive",
-    "address":{
-        "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020325",
-        "street": "AV. Afonso Pena",
-        "number": 736,
-        "complement": "Apt 121",
-        "latitude": -23.976815351036432,
-        "longitude": -46.297928631145886,
-        "isDumpSpot": true
-    }
-}
-```
-
-</br></br>
-
-<h3>Atualização de um ponto de coleta</h3>
-
-`PATCH /dumpSpot/:dumpSpot_id - FORMATO DA REQUISIÇÃO `
-
-**Bearer Token Required**
-
-```json
-{
-  "name": "ONG NatLive"
+	"zipCode": "09210300"
 }
 ```
 
 > Em caso de sucesso, a resposta será:
 
-`PATCH /dumpSpot/:dumpSpot_id - FORMATO DA RESPOSTA - STATUS 200`
+`GET /dumpSpot/free - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+[
+	{
+		"dumpSpot_id": "1b83215d-b2bf-4891-9eb0-f02d3f5bb0bd",
+		"name": "Ong Nature",
+		"address": {
+			"addressId": "2ada2ae0-2abe-43e0-885c-1c12fafb38ce",
+			"zipCode": "09210300",
+			"street": "Avenida Estados Unidos",
+			"complement": "Casa 5",
+			"state": "SP",
+			"city": "Santo André",
+			"number": 359,
+			"latitude": -23.6369123,
+			"longitude": -46.529671,
+			"isDumpSpot": true
+		}
+	}
+]
+```
+
+</br></br>
+
+<h3>Busca de um ponto de coleta pelo cep do usuário</h3>
+
+`GET /dumpSpot/free - NO BODY `
+
+**Bearer Token Required**
+
+> Em caso de sucesso, a resposta será:
+
+`GET /dumpSpot/free - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+[
+	{
+		"dumpSpot_id": "1b83215d-b2bf-4891-9eb0-f02d3f5bb0bd",
+		"name": "Ong Nature",
+		"address": {
+			"addressId": "2ada2ae0-2abe-43e0-885c-1c12fafb38ce",
+			"zipCode": "09210300",
+			"street": "Avenida Estados Unidos",
+			"complement": "Casa 5",
+			"state": "SP",
+			"city": "Santo André",
+			"number": 359,
+			"latitude": -23.6369123,
+			"longitude": -46.529671,
+			"isDumpSpot": true
+		}
+	}
+]
+```
+
+</br></br>
+
+<h3>Busca de um ponto de coleta pela distância</h3>
+
+`GET /dumpSpot/byDistance - NO BODY `
 
 ```json
 {
-    "dumpSpot_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-    "name": "ONG NatLive",
-    "address":{
-        "address_id": "29788820-4fa9-4d61-bb5c-5b8b5ac9f606",
-        "zipCode": "11020325",
-        "street": "AV. Afonso Pena",
-        "number": 736,
-        "complement": "Apt 121",
-        "latitude": -23.976815351036432,
-        "longitude": -46.297928631145886,
-        "isDumpSpot": true
-    }
+	"zipCode": "09210300"
+}
+```
+
+> Em caso de sucesso, a resposta será:
+
+`GET /dumpSpot/byDistance - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"origin_addresses": "AV. UNITED STATES, 1 101 - Parque das Nações, Santo André - SP, 09210-300, Brazil",
+	"route": [
+		{
+			"destination_address": "R. Ana Neri, 365 - Vila Metalurgica, Santo André - SP, 09220-030, Brazil",
+			"distance": "1.1 km",
+			"duration": "4 mins"
+		},
+		{
+			"destination_address": "Av. Estados Unidos, 359 - Parque das Nações, Santo André - SP, 09210-300, Brazil",
+			"distance": "0.2 km",
+			"duration": "1 min"
+		}
+	]
 }
 ```
 
 </br></br>
+
+<h3>Busca de um ponto de coleta pela distância do usuário</h3>
+
+`GET /dumpSpot/byDistance - NO BODY `
+
+**Bearer Token Required**
+
+> Em caso de sucesso, a resposta será:
+
+`GET /dumpSpot/byDistance - FORMATO DA RESPOSTA - STATUS 200`
+
+```json
+{
+	"origin_addresses": "AV. UNITED STATES, 1 101 - Parque das Nações, Santo André - SP, 09210-300, Brazil",
+	"route": [
+		{
+			"destination_address": "R. Ana Neri, 365 - Vila Metalurgica, Santo André - SP, 09220-030, Brazil",
+			"distance": "1.1 km",
+			"duration": "4 mins"
+		},
+		{
+			"destination_address": "Av. Estados Unidos, 359 - Parque das Nações, Santo André - SP, 09210-300, Brazil",
+			"distance": "0.2 km",
+			"duration": "1 min"
+		}
+	]
+}
+```
