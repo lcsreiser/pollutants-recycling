@@ -18,13 +18,15 @@ class ItemController{
         const infoToUpdated = req.body
         const item = await itemService.updateItem(id, infoToUpdated)
 
-        return res.status(204).json(item)
+        console.log(item)
+
+        return res.status(200).json(item)
     }
     delete = async(req: Request, res: Response)=>{
         const id = req.params['id']
         await itemService.deleteItem(id)
 
-        return res.status(200).json({message: "Item successfully deleted"})
+        return res.status(202).json({message: "Item successfully deleted"})
     }
 }
 

@@ -14,7 +14,10 @@ const verifyUserExists = async (
   });
 
   if (foundUser) {
-    throw new ErrorHandler(409, `${(req.validated as User).email} already exists`)
+    throw new ErrorHandler(
+      409,
+      `${(req.validated as User).email} already exists`
+    );
   }
 
   return next();
